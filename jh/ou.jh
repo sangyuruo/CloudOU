@@ -1,0 +1,93 @@
+/**
+ * 公司表
+ * @author daiziying
+ */
+entity Company {
+  /** 公司全名 */
+  companyLongName String maxlength(200),
+  /** 公司名 */
+  companyName String maxlength(100)  required,
+  /** 父公司名 */
+  parentCompanyName String maxlength(100)  required,
+  /** 公司代码 */
+  companyCode String maxlength(64) required,
+  /** 国家代码 */
+  countryCode String maxlength(64) required,
+  /** 城市代码 */
+  cityCode String maxlength(64) required,
+  /** 地址代码 */
+  addressCode String maxlength(64),
+  /** 地址名 */
+  addressName String maxlength(100) required,
+  /** 电话号码 */
+  telephone String maxlength(20),
+  /** 法人 */
+  legalPerson String maxlength(20),
+  /** 父公司代码 */
+  parentCompanyCode String maxlength(64),
+  /** 级别id */
+  levelId Integer,
+  /** 备注 */
+  remark String maxlength(500),
+  /** 附件数 */
+  attachsNum Integer,
+  /** 排序 */
+  sort Integer  ,
+  /** 是否可用 */
+  enable Integer required,
+  /** 创建人 */
+  createdBy String maxlength(20) required,
+  /** 创建时间 */
+  createTime  Instant required,
+  /** 修改人 */
+  updatedBy String maxlength(20) required,
+  /** 修改时间  */
+  updateTime Instant required
+}
+
+/**
+ * 组织架构表
+ * @author daiziying
+ */
+entity Organization {
+    /** 组织代码 */
+    orgCode  String maxlength(64) required,
+    /** 组织名称 */
+    orgName String maxlength(40) required,
+    /** 01-业务部门 02-组织单元 */ 
+    orgType String maxlength(100)  ,
+    /**公司代码 */
+    companyCode String maxlength(64) required  ,
+    /**上级代码 */
+    parentCode String maxlength(64) ,
+    /**电话 */
+    telephone String maxlength(100) ,
+    /**公司名 */
+    companyName String maxlength(40) required,
+    /**父组织名 */
+    parentOrgName String maxlength(40) required,
+    /**地址名称 */
+    addressName String maxlength(40) required,
+    /**地址代码 */
+    addressCode String maxlength(64) ,
+    /**备注 */
+    remark String maxlength(500),
+    /**排序号 */
+    sort Integer ,
+    /** 附件数 */
+    attachsNum Integer  ,
+    /** 是否可用 */
+    enable Integer required,
+    /** 创建人 */
+    createdBy String maxlength(20) required,
+    /** 创建时间 */
+    createTime  Instant required,
+    /** 修改人 */
+    updatedBy String maxlength(20) required,
+    /** 修改时间 */
+    updateTime Instant required
+}
+
+relationship OneToOne {
+  Organization{company} to Company
+}
