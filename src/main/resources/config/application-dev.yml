@@ -33,9 +33,9 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://localhost:3306/EmCloudOU?useUnicode=true&characterEncoding=utf8&useSSL=false
-        username: root
-        password: root
+        url: jdbc:mysql://mysql.emcloud.dev.com:3306/EmCloudOU?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: hxxndev
+        password: 123456
         hikari:
             data-source-properties:
                 cachePrepStmts: true
@@ -87,7 +87,7 @@ liquibase:
 #    port: 8443
 #    ssl:
 #        key-store: keystore.p12
-#        key-store-password: <your-password>
+#        key-store-password: 123456 <your-password>
 #        keyStoreType: PKCS12
 #        keyAlias: EmCloudOU
 # ===================================================================
