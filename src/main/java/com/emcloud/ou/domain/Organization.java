@@ -125,8 +125,8 @@ public class Organization implements Serializable {
      * 排序号
      */
     @ApiModelProperty(value = "排序号")
-    @Column(name = "jhi_sort")
-    private Integer sort;
+    @Column(name = "seq_no")
+    private Integer seqNo;
 
     /**
      * 附件数
@@ -333,17 +333,17 @@ public class Organization implements Serializable {
         this.remark = remark;
     }
 
-    public Integer getSort() {
-        return sort;
+    public Integer getSeqNo() {
+        return seqNo;
     }
 
-    public Organization sort(Integer sort) {
-        this.sort = sort;
+    public Organization seqNo(Integer seqNo) {
+        this.seqNo = seqNo;
         return this;
     }
 
-    public void setSort(Integer sort) {
-        this.sort = sort;
+    public void setSeqNo(Integer seqNo) {
+        this.seqNo = seqNo;
     }
 
     public Integer getAttachsNum() {
@@ -473,7 +473,7 @@ public class Organization implements Serializable {
             ", addressName='" + getAddressName() + "'" +
             ", addressCode='" + getAddressCode() + "'" +
             ", remark='" + getRemark() + "'" +
-            ", sort='" + getSort() + "'" +
+            ", seqNo='" + getSeqNo() + "'" +
             ", attachsNum='" + getAttachsNum() + "'" +
             ", enable='" + getEnable() + "'" +
             ", createdBy='" + getCreatedBy() + "'" +
