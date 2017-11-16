@@ -32,7 +32,7 @@ entity Company {
   /** 附件数 */
   attachsNum Integer,
   /** 排序 */
-  sort Integer  ,
+  seqno Integer  ,
   /** 是否可用 */
   enable Integer required,
   /** 创建人 */
@@ -73,7 +73,7 @@ entity Organization {
     /**备注 */
     remark String maxlength(500),
     /**排序号 */
-    sort Integer ,
+    seqno Integer ,
     /** 附件数 */
     attachsNum Integer  ,
     /** 是否可用 */
