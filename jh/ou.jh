@@ -6,7 +6,7 @@ entity Company {
   /** 公司全名 */
   companyLongName String maxlength(200),
   /** 公司名 */
-  companyName String maxlength(100)  required,
+  companyName String maxlength(40)  required,
   /** 父公司名 */
   parentCompanyName String maxlength(100)  required,
   /** 公司代码 */
@@ -54,7 +54,7 @@ entity Organization {
     orgCode  String maxlength(64) required,
     /** 组织名称 */
     orgName String maxlength(40) required,
-    /** 01-业务部门 02-组织单元 */ 
+    /** 01-业务部门 02-组织单元 */
     orgType String maxlength(100)  ,
     /**公司代码 */
     companyCode String maxlength(64) required  ,
