@@ -140,7 +140,7 @@ public class Organization implements Serializable {
      */
     @NotNull
     @ApiModelProperty(value = "是否可用", required = true)
-    @Column(name = "jhi_enable", nullable = false)
+    @Column(name = "enable", nullable = false)
     private Integer enable;
 
     /**
