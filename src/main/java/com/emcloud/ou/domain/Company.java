@@ -147,15 +147,15 @@ public class Company implements Serializable {
      * 排序
      */
     @ApiModelProperty(value = "排序")
-    @Column(name = "jhi_sort")
-    private Integer sort;
+    @Column(name = "seq_no")
+    private Integer seqNo;
 
     /**
      * 是否可用
      */
     @NotNull
     @ApiModelProperty(value = "是否可用", required = true)
-    @Column(name = "jhi_enable", nullable = false)
+    @Column(name = "enable", nullable = false)
     private Integer enable;
 
     /**
@@ -379,17 +379,17 @@ public class Company implements Serializable {
         this.attachsNum = attachsNum;
     }
 
-    public Integer getSort() {
-        return sort;
+    public Integer getSeqNo() {
+        return seqNo;
     }
 
-    public Company sort(Integer sort) {
-        this.sort = sort;
+    public Company seqNo(Integer seqNo) {
+        this.seqNo = seqNo;
         return this;
     }
 
-    public void setSort(Integer sort) {
-        this.sort = sort;
+    public void setSeqNo(Integer seqNo) {
+        this.seqNo = seqNo;
     }
 
     public Integer getEnable() {
@@ -496,7 +496,7 @@ public class Company implements Serializable {
             ", levelId='" + getLevelId() + "'" +
             ", remark='" + getRemark() + "'" +
             ", attachsNum='" + getAttachsNum() + "'" +
-            ", sort='" + getSort() + "'" +
+            ", seqNo='" + getSeqNo() + "'" +
             ", enable='" + getEnable() + "'" +
             ", createdBy='" + getCreatedBy() + "'" +
             ", createTime='" + getCreateTime() + "'" +
