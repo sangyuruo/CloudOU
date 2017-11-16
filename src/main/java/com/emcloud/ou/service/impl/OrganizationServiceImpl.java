@@ -38,6 +38,19 @@ public class OrganizationServiceImpl implements OrganizationService{
         return organizationRepository.save(organization);
     }
 
+
+    /**
+     * Update a organization.
+     *
+     * @param organization the entity to update
+     * @return the persisted entity
+     */
+    @Override
+    public Organization update(Organization organization) {
+        log.debug("Request to save Organization : {}", organization);
+        return organizationRepository.save(organization);
+    }
+
     /**
      *  Get all the organizations.
      *

@@ -18,12 +18,28 @@ public interface CompanyService {
     Company save(Company company);
 
     /**
+     * Update a company.
+     *
+     * @param company the entity to update
+     * @return the persisted entity
+     */
+    Company update(Company company);
+
+    /**
      *  Get all the companies.
      *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
     Page<Company> findAll(Pageable pageable);
+
+    /**
+     *  Get all the companies by companyname.
+     *
+     *  @param pageable the pagination information
+     *  @return the list of entities
+     */
+    Page<Company> findByCompanyName(Pageable pageable,String companyname);
 
     /**
      *  Get the "id" company.

@@ -39,6 +39,18 @@ public class CompanyServiceImpl implements CompanyService{
     }
 
     /**
+     * Update a company.
+     *
+     * @param company the entity to update
+     * @return the persisted entity
+     */
+    @Override
+    public Company update(Company company) {
+        log.debug("Request to save Company : {}", company);
+        return companyRepository.save(company);
+    }
+
+    /**
      *  Get all the companies.
      *
      *  @param pageable the pagination information
@@ -49,6 +61,20 @@ public class CompanyServiceImpl implements CompanyService{
     public Page<Company> findAll(Pageable pageable) {
         log.debug("Request to get all Companies");
         return companyRepository.findAll(pageable);
+    }
+
+
+    /**
+     *  Get all the companies by companyname .
+     *
+     *  @param pageable the pagination information
+     *  @return the list of entities
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Company> findByCompanyName(Pageable pageable,String companyname) {
+        log.debug("Request to get all Companies by companyname");
+        return companyRepository.findAllByCompanyNameContaining(pageable,companyname);
     }
 
     /**

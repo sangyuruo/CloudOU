@@ -77,7 +77,7 @@ public class OrganizationResource {
         if (organization.getId() == null) {
             return createOrganization(organization);
         }
-        Organization result = organizationService.save(organization);
+        Organization result = organizationService.update(organization);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, organization.getId().toString()))
             .body(result);

@@ -17,6 +17,15 @@ public interface OrganizationService {
      */
     Organization save(Organization organization);
 
+
+    /**
+     * Update a organization.
+     *
+     * @param organization the entity to update
+     * @return the persisted entity
+     */
+    Organization update(Organization organization);
+
     /**
      *  Get all the organizations.
      *

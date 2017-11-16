@@ -77,7 +77,7 @@ public class CompanyResource {
         if (company.getId() == null) {
             return createCompany(company);
         }
-        Company result = companyService.save(company);
+        Company result = companyService.update(company);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, company.getId().toString()))
             .body(result);
@@ -95,6 +95,21 @@ public class CompanyResource {
         log.debug("REST request to get a page of Companies");
         Page<Company> page = companyService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/companies");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    /**
+     * GET  /companies : get all the companies by companyname.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of companies in body
+     */
+    @GetMapping("/companies")
+    @Timed
+    public ResponseEntity<List<Company>> getAllCompaniesByCompanyName(@ApiParam Pageable pageable,@PathVariable String companyname) {
+        log.debug("REST request to get a page of Companies by CompanyName");
+        Page<Company> page = companyService.findByCompanyName(pageable,companyname);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/companies/bycompanyname");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
