@@ -41,7 +41,7 @@ public class Company implements Serializable {
     @NotNull
     @Size(max = 100)
     @ApiModelProperty(value = "公司名", required = true)
-    @Column(name = "company_name", length = 100, nullable = false)
+    @Column(name = "company_name", length = 40, nullable = false)
     private String companyName;
 
     /**
