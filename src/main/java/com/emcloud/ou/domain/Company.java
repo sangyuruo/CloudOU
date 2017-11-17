@@ -156,7 +156,7 @@ public class Company implements Serializable {
     @NotNull
     @ApiModelProperty(value = "是否可用", required = true)
     @Column(name = "enable", nullable = false)
-    private Integer enable;
+    private Boolean enable;
 
     /**
      * 创建人
@@ -392,16 +392,16 @@ public class Company implements Serializable {
         this.seqNo = seqNo;
     }
 
-    public Integer getEnable() {
+    public Boolean getEnable() {
         return enable;
     }
 
-    public Company enable(Integer enable) {
+    public Company enable(Boolean enable) {
         this.enable = enable;
         return this;
     }
 
-    public void setEnable(Integer enable) {
+    public void setEnable(Boolean enable) {
         this.enable = enable;
     }
 
