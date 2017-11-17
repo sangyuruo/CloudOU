@@ -1,5 +1,6 @@
 package com.emcloud.ou.service.impl;
 
+import com.emcloud.ou.security.SecurityUtils;
 import com.emcloud.ou.service.OrganizationService;
 import com.emcloud.ou.domain.Organization;
 import com.emcloud.ou.repository.OrganizationRepository;
@@ -9,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.Instant;
 
 
 /**
@@ -35,6 +38,10 @@ public class OrganizationServiceImpl implements OrganizationService{
     @Override
     public Organization save(Organization organization) {
         log.debug("Request to save Organization : {}", organization);
+        organization.setCreatedBy(SecurityUtils.getCurrentUserLogin());
+        organization.setCreateTime(Instant.now());
+        organization.setUpdatedBy(SecurityUtils.getCurrentUserLogin());
+        organization.setUpdateTime(Instant.now());
         return organizationRepository.save(organization);
     }
 
@@ -48,6 +55,8 @@ public class OrganizationServiceImpl implements OrganizationService{
     @Override
     public Organization update(Organization organization) {
         log.debug("Request to save Organization : {}", organization);
+        organization.setUpdatedBy(SecurityUtils.getCurrentUserLogin());
+        organization.setUpdateTime(Instant.now());
         return organizationRepository.save(organization);
     }
 
