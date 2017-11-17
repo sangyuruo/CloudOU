@@ -82,8 +82,8 @@ public class OrganizationResourceIntTest {
     private static final Integer DEFAULT_ATTACHS_NUM = 1;
     private static final Integer UPDATED_ATTACHS_NUM = 2;
 
-    private static final Integer DEFAULT_ENABLE = 1;
-    private static final Integer UPDATED_ENABLE = 2;
+    private static final Boolean DEFAULT_ENABLE = true;
+    private static final Boolean UPDATED_ENABLE = false;
 
     private static final String DEFAULT_CREATED_BY = "AAAAAAAAAA";
     private static final String UPDATED_CREATED_BY = "BBBBBBBBBB";
