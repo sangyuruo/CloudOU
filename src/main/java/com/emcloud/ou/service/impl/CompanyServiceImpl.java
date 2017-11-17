@@ -1,5 +1,6 @@
 package com.emcloud.ou.service.impl;
 
+import com.emcloud.ou.security.SecurityUtils;
 import com.emcloud.ou.service.CompanyService;
 import com.emcloud.ou.domain.Company;
 import com.emcloud.ou.repository.CompanyRepository;
@@ -9,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.Instant;
 
 
 /**
@@ -35,6 +38,10 @@ public class CompanyServiceImpl implements CompanyService{
     @Override
     public Company save(Company company) {
         log.debug("Request to save Company : {}", company);
+        company.setCreatedBy(SecurityUtils.getCurrentUserLogin());
+        company.setCreateTime(Instant.now());
+        company.setUpdatedBy(SecurityUtils.getCurrentUserLogin());
+        company.setUpdateTime(Instant.now());
         return companyRepository.save(company);
     }
 
@@ -47,6 +54,8 @@ public class CompanyServiceImpl implements CompanyService{
     @Override
     public Company update(Company company) {
         log.debug("Request to save Company : {}", company);
+        company.setUpdatedBy(SecurityUtils.getCurrentUserLogin());
+        company.setUpdateTime(Instant.now());
         return companyRepository.save(company);
     }
 
