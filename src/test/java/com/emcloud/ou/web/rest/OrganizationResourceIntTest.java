@@ -76,8 +76,8 @@ public class OrganizationResourceIntTest {
     private static final String DEFAULT_REMARK = "AAAAAAAAAA";
     private static final String UPDATED_REMARK = "BBBBBBBBBB";
 
-    private static final Integer DEFAULT_SORT = 1;
-    private static final Integer UPDATED_SORT = 2;
+    private static final Integer DEFAULT_SEQ_NO = 1;
+    private static final Integer UPDATED_SEQ_NO = 2;
 
     private static final Integer DEFAULT_ATTACHS_NUM = 1;
     private static final Integer UPDATED_ATTACHS_NUM = 2;
@@ -149,7 +149,7 @@ public class OrganizationResourceIntTest {
             .addressName(DEFAULT_ADDRESS_NAME)
             .addressCode(DEFAULT_ADDRESS_CODE)
             .remark(DEFAULT_REMARK)
-            .sort(DEFAULT_SORT)
+            .seqNo(DEFAULT_SEQ_NO)
             .attachsNum(DEFAULT_ATTACHS_NUM)
             .enable(DEFAULT_ENABLE)
             .createdBy(DEFAULT_CREATED_BY)
@@ -190,7 +190,7 @@ public class OrganizationResourceIntTest {
         assertThat(testOrganization.getAddressName()).isEqualTo(DEFAULT_ADDRESS_NAME);
         assertThat(testOrganization.getAddressCode()).isEqualTo(DEFAULT_ADDRESS_CODE);
         assertThat(testOrganization.getRemark()).isEqualTo(DEFAULT_REMARK);
-        assertThat(testOrganization.getSort()).isEqualTo(DEFAULT_SORT);
+        assertThat(testOrganization.getSeqNo()).isEqualTo(DEFAULT_SEQ_NO);
         assertThat(testOrganization.getAttachsNum()).isEqualTo(DEFAULT_ATTACHS_NUM);
         assertThat(testOrganization.getEnable()).isEqualTo(DEFAULT_ENABLE);
         assertThat(testOrganization.getCreatedBy()).isEqualTo(DEFAULT_CREATED_BY);
@@ -438,7 +438,7 @@ public class OrganizationResourceIntTest {
             .andExpect(jsonPath("$.[*].addressName").value(hasItem(DEFAULT_ADDRESS_NAME.toString())))
             .andExpect(jsonPath("$.[*].addressCode").value(hasItem(DEFAULT_ADDRESS_CODE.toString())))
             .andExpect(jsonPath("$.[*].remark").value(hasItem(DEFAULT_REMARK.toString())))
-            .andExpect(jsonPath("$.[*].sort").value(hasItem(DEFAULT_SORT)))
+            .andExpect(jsonPath("$.[*].sort").value(hasItem(DEFAULT_SEQ_NO)))
             .andExpect(jsonPath("$.[*].attachsNum").value(hasItem(DEFAULT_ATTACHS_NUM)))
             .andExpect(jsonPath("$.[*].enable").value(hasItem(DEFAULT_ENABLE)))
             .andExpect(jsonPath("$.[*].createdBy").value(hasItem(DEFAULT_CREATED_BY.toString())))
@@ -469,7 +469,7 @@ public class OrganizationResourceIntTest {
             .andExpect(jsonPath("$.addressName").value(DEFAULT_ADDRESS_NAME.toString()))
             .andExpect(jsonPath("$.addressCode").value(DEFAULT_ADDRESS_CODE.toString()))
             .andExpect(jsonPath("$.remark").value(DEFAULT_REMARK.toString()))
-            .andExpect(jsonPath("$.sort").value(DEFAULT_SORT))
+            .andExpect(jsonPath("$.sort").value(DEFAULT_SEQ_NO))
             .andExpect(jsonPath("$.attachsNum").value(DEFAULT_ATTACHS_NUM))
             .andExpect(jsonPath("$.enable").value(DEFAULT_ENABLE))
             .andExpect(jsonPath("$.createdBy").value(DEFAULT_CREATED_BY.toString()))
@@ -508,7 +508,7 @@ public class OrganizationResourceIntTest {
             .addressName(UPDATED_ADDRESS_NAME)
             .addressCode(UPDATED_ADDRESS_CODE)
             .remark(UPDATED_REMARK)
-            .sort(UPDATED_SORT)
+            .seqNo(UPDATED_SEQ_NO)
             .attachsNum(UPDATED_ATTACHS_NUM)
             .enable(UPDATED_ENABLE)
             .createdBy(UPDATED_CREATED_BY)
@@ -536,7 +536,7 @@ public class OrganizationResourceIntTest {
         assertThat(testOrganization.getAddressName()).isEqualTo(UPDATED_ADDRESS_NAME);
         assertThat(testOrganization.getAddressCode()).isEqualTo(UPDATED_ADDRESS_CODE);
         assertThat(testOrganization.getRemark()).isEqualTo(UPDATED_REMARK);
-        assertThat(testOrganization.getSort()).isEqualTo(UPDATED_SORT);
+        assertThat(testOrganization.getSeqNo()).isEqualTo(UPDATED_SEQ_NO);
         assertThat(testOrganization.getAttachsNum()).isEqualTo(UPDATED_ATTACHS_NUM);
         assertThat(testOrganization.getEnable()).isEqualTo(UPDATED_ENABLE);
         assertThat(testOrganization.getCreatedBy()).isEqualTo(UPDATED_CREATED_BY);
