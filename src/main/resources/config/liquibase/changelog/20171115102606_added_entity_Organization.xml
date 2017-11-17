@@ -74,7 +74,7 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="enable" type="integer">
+            <column name="enable" type="boolean">
                 <constraints nullable="false" />
             </column>
 
