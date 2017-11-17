@@ -104,13 +104,14 @@ public class CompanyResource {
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of companies in body
      */
-    @GetMapping("/companies")
+    @GetMapping("/companies/bycompanyname")
     @Timed
     public ResponseEntity<List<Company>> getAllCompaniesByCompanyName(@ApiParam Pageable pageable,@PathVariable String companyname) {
         log.debug("REST request to get a page of Companies by CompanyName");
         Page<Company> page = companyService.findByCompanyName(pageable,companyname);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/companies/bycompanyname");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+
     }
 
     /**
