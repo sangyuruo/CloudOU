@@ -141,7 +141,7 @@ public class Organization implements Serializable {
     @NotNull
     @ApiModelProperty(value = "是否可用", required = true)
     @Column(name = "enable", nullable = false)
-    private Integer enable;
+    private Boolean enable;
 
     /**
      * 创建人
@@ -359,16 +359,16 @@ public class Organization implements Serializable {
         this.attachsNum = attachsNum;
     }
 
-    public Integer getEnable() {
+    public Boolean getEnable() {
         return enable;
     }
 
-    public Organization enable(Integer enable) {
+    public Organization enable(Boolean enable) {
         this.enable = enable;
         return this;
     }
 
-    public void setEnable(Integer enable) {
+    public void setEnable(Boolean enable) {
         this.enable = enable;
     }
 
