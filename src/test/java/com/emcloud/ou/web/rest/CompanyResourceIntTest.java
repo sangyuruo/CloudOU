@@ -85,8 +85,8 @@ public class CompanyResourceIntTest {
     private static final Integer DEFAULT_ATTACHS_NUM = 1;
     private static final Integer UPDATED_ATTACHS_NUM = 2;
 
-    private static final Integer DEFAULT_SORT = 1;
-    private static final Integer UPDATED_SORT = 2;
+    private static final Integer DEFAULT_SEQ_NO = 1;
+    private static final Integer UPDATED_SEQ_NO = 2;
 
     private static final Integer DEFAULT_ENABLE = 1;
     private static final Integer UPDATED_ENABLE = 2;
@@ -158,7 +158,7 @@ public class CompanyResourceIntTest {
             .levelId(DEFAULT_LEVEL_ID)
             .remark(DEFAULT_REMARK)
             .attachsNum(DEFAULT_ATTACHS_NUM)
-            .seqNo(DEFAULT_SORT)
+            .seqNo(DEFAULT_SEQ_NO)
             .enable(DEFAULT_ENABLE)
             .createdBy(DEFAULT_CREATED_BY)
             .createTime(DEFAULT_CREATE_TIME)
@@ -201,7 +201,7 @@ public class CompanyResourceIntTest {
         assertThat(testCompany.getLevelId()).isEqualTo(DEFAULT_LEVEL_ID);
         assertThat(testCompany.getRemark()).isEqualTo(DEFAULT_REMARK);
         assertThat(testCompany.getAttachsNum()).isEqualTo(DEFAULT_ATTACHS_NUM);
-        assertThat(testCompany.getSeqNo()).isEqualTo(DEFAULT_SORT);
+        assertThat(testCompany.getSeqNo()).isEqualTo(DEFAULT_SEQ_NO);
         assertThat(testCompany.getEnable()).isEqualTo(DEFAULT_ENABLE);
         assertThat(testCompany.getCreatedBy()).isEqualTo(DEFAULT_CREATED_BY);
         assertThat(testCompany.getCreateTime()).isEqualTo(DEFAULT_CREATE_TIME);
@@ -433,7 +433,7 @@ public class CompanyResourceIntTest {
         companyRepository.saveAndFlush(company);
 
         // Get all the companyList
-        restCompanyMockMvc.perform(get("/api/companies?sort=id,desc"))
+        restCompanyMockMvc.perform(get("/api/companies?seq_no=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(company.getId().intValue())))
@@ -451,7 +451,7 @@ public class CompanyResourceIntTest {
             .andExpect(jsonPath("$.[*].levelId").value(hasItem(DEFAULT_LEVEL_ID)))
             .andExpect(jsonPath("$.[*].remark").value(hasItem(DEFAULT_REMARK.toString())))
             .andExpect(jsonPath("$.[*].attachsNum").value(hasItem(DEFAULT_ATTACHS_NUM)))
-            .andExpect(jsonPath("$.[*].sort").value(hasItem(DEFAULT_SORT)))
+            .andExpect(jsonPath("$.[*].seqNo").value(hasItem(DEFAULT_SEQ_NO)))
             .andExpect(jsonPath("$.[*].enable").value(hasItem(DEFAULT_ENABLE)))
             .andExpect(jsonPath("$.[*].createdBy").value(hasItem(DEFAULT_CREATED_BY.toString())))
             .andExpect(jsonPath("$.[*].createTime").value(hasItem(DEFAULT_CREATE_TIME.toString())))
@@ -484,7 +484,7 @@ public class CompanyResourceIntTest {
             .andExpect(jsonPath("$.levelId").value(DEFAULT_LEVEL_ID))
             .andExpect(jsonPath("$.remark").value(DEFAULT_REMARK.toString()))
             .andExpect(jsonPath("$.attachsNum").value(DEFAULT_ATTACHS_NUM))
-            .andExpect(jsonPath("$.sort").value(DEFAULT_SORT))
+            .andExpect(jsonPath("$.seqNo").value(DEFAULT_SEQ_NO))
             .andExpect(jsonPath("$.enable").value(DEFAULT_ENABLE))
             .andExpect(jsonPath("$.createdBy").value(DEFAULT_CREATED_BY.toString()))
             .andExpect(jsonPath("$.createTime").value(DEFAULT_CREATE_TIME.toString()))
@@ -525,7 +525,7 @@ public class CompanyResourceIntTest {
             .levelId(UPDATED_LEVEL_ID)
             .remark(UPDATED_REMARK)
             .attachsNum(UPDATED_ATTACHS_NUM)
-            .seqNo(UPDATED_SORT)
+            .seqNo(UPDATED_SEQ_NO)
             .enable(UPDATED_ENABLE)
             .createdBy(UPDATED_CREATED_BY)
             .createTime(UPDATED_CREATE_TIME)
@@ -555,7 +555,7 @@ public class CompanyResourceIntTest {
         assertThat(testCompany.getLevelId()).isEqualTo(UPDATED_LEVEL_ID);
         assertThat(testCompany.getRemark()).isEqualTo(UPDATED_REMARK);
         assertThat(testCompany.getAttachsNum()).isEqualTo(UPDATED_ATTACHS_NUM);
-        assertThat(testCompany.getSeqNo()).isEqualTo(UPDATED_SORT);
+        assertThat(testCompany.getSeqNo()).isEqualTo(UPDATED_SEQ_NO);
         assertThat(testCompany.getEnable()).isEqualTo(UPDATED_ENABLE);
         assertThat(testCompany.getCreatedBy()).isEqualTo(UPDATED_CREATED_BY);
         assertThat(testCompany.getCreateTime()).isEqualTo(UPDATED_CREATE_TIME);
