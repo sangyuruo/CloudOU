@@ -19,7 +19,7 @@
                 "maxlength",
                 "required"
             ],
-            "fieldValidateRulesMaxlength": 100
+            "fieldValidateRulesMaxlength": 40
         },
         {
             "fieldName": "parentCompanyName",
@@ -127,14 +127,14 @@
             "fieldType": "Integer"
         },
         {
-            "fieldName": "sort",
+            "fieldName": "seqNo",
             "javadoc": "排序",
             "fieldType": "Integer"
         },
         {
             "fieldName": "enable",
             "javadoc": "是否可用",
-            "fieldType": "Integer",
+            "fieldType": "Boolean",
             "fieldValidateRules": [
                 "required"
             ]
