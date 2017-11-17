@@ -158,7 +158,7 @@ public class CompanyResourceIntTest {
             .levelId(DEFAULT_LEVEL_ID)
             .remark(DEFAULT_REMARK)
             .attachsNum(DEFAULT_ATTACHS_NUM)
-            .sort(DEFAULT_SORT)
+            .seqNo(DEFAULT_SORT)
             .enable(DEFAULT_ENABLE)
             .createdBy(DEFAULT_CREATED_BY)
             .createTime(DEFAULT_CREATE_TIME)
@@ -201,7 +201,7 @@ public class CompanyResourceIntTest {
         assertThat(testCompany.getLevelId()).isEqualTo(DEFAULT_LEVEL_ID);
         assertThat(testCompany.getRemark()).isEqualTo(DEFAULT_REMARK);
         assertThat(testCompany.getAttachsNum()).isEqualTo(DEFAULT_ATTACHS_NUM);
-        assertThat(testCompany.getSort()).isEqualTo(DEFAULT_SORT);
+        assertThat(testCompany.getSeqNo()).isEqualTo(DEFAULT_SORT);
         assertThat(testCompany.getEnable()).isEqualTo(DEFAULT_ENABLE);
         assertThat(testCompany.getCreatedBy()).isEqualTo(DEFAULT_CREATED_BY);
         assertThat(testCompany.getCreateTime()).isEqualTo(DEFAULT_CREATE_TIME);
@@ -525,7 +525,7 @@ public class CompanyResourceIntTest {
             .levelId(UPDATED_LEVEL_ID)
             .remark(UPDATED_REMARK)
             .attachsNum(UPDATED_ATTACHS_NUM)
-            .sort(UPDATED_SORT)
+            .seqNo(UPDATED_SORT)
             .enable(UPDATED_ENABLE)
             .createdBy(UPDATED_CREATED_BY)
             .createTime(UPDATED_CREATE_TIME)
@@ -555,7 +555,7 @@ public class CompanyResourceIntTest {
         assertThat(testCompany.getLevelId()).isEqualTo(UPDATED_LEVEL_ID);
         assertThat(testCompany.getRemark()).isEqualTo(UPDATED_REMARK);
         assertThat(testCompany.getAttachsNum()).isEqualTo(UPDATED_ATTACHS_NUM);
-        assertThat(testCompany.getSort()).isEqualTo(UPDATED_SORT);
+        assertThat(testCompany.getSeqNo()).isEqualTo(UPDATED_SORT);
         assertThat(testCompany.getEnable()).isEqualTo(UPDATED_ENABLE);
         assertThat(testCompany.getCreatedBy()).isEqualTo(UPDATED_CREATED_BY);
         assertThat(testCompany.getCreateTime()).isEqualTo(UPDATED_CREATE_TIME);
