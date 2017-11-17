@@ -34,7 +34,7 @@ entity Company {
   /** 排序 */
   seqNo Integer  ,
   /** 是否可用 */
-  enable Integer required,
+  enable Boolean required,
   /** 创建人 */
   createdBy String maxlength(20) required,
   /** 创建时间 */
@@ -77,7 +77,7 @@ entity Organization {
     /** 附件数 */
     attachsNum Integer  ,
     /** 是否可用 */
-    enable Integer required,
+    enable Boolean required,
     /** 创建人 */
     createdBy String maxlength(20) required,
     /** 创建时间 */
