@@ -117,7 +117,7 @@
             "fieldValidateRulesMaxlength": 500
         },
         {
-            "fieldName": "sort",
+            "fieldName": "seqNo",
             "javadoc": "排序号",
             "fieldType": "Integer"
         },
@@ -129,7 +129,7 @@
         {
             "fieldName": "enable",
             "javadoc": "是否可用",
-            "fieldType": "Integer",
+            "fieldType": "Boolean",
             "fieldValidateRules": [
                 "required"
             ]
