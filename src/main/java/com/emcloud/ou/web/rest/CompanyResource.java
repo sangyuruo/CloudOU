@@ -8,6 +8,7 @@ import com.emcloud.ou.web.rest.util.HeaderUtil;
 import com.emcloud.ou.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -91,9 +92,15 @@ public class CompanyResource {
      */
     @GetMapping("/companies")
     @Timed
-    public ResponseEntity<List<Company>> getAllCompanies(@ApiParam Pageable pageable) {
+    public ResponseEntity<List<Company>> getAllCompanies
+    (@RequestParam(value = "query",required = false) String companyName,@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of Companies");
-        Page<Company> page = companyService.findAll(pageable);
+        Page<Company> page;
+        if(StringUtils.isBlank(companyName)){
+            page = companyService.findAll(pageable);
+        }else {
+            page = companyService.findByCompanyName(pageable,companyName);
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/companies");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
