@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.util.List;
 
 
 /**
@@ -81,10 +82,11 @@ public class CompanyServiceImpl implements CompanyService{
      */
     @Override
     @Transactional(readOnly = true)
-    public Page<Company> findByCompanyName(Pageable pageable,String companyname) {
+    public Page<Company> findByCOrA(Pageable pageable,String companyname,String addressname) {
         log.debug("Request to get all Companies by companyname");
-        return companyRepository.findAllByCompanyNameContaining(pageable,companyname);
+        return companyRepository.findByCompanyNameContainingOrAddressNameContaining(pageable,companyname,addressname);
     }
+
 
     /**
      *  Get one company by id.

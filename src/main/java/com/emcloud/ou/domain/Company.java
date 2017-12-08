@@ -104,7 +104,6 @@ public class Company implements Serializable {
     @ApiModelProperty(value = "电话号码")
     @Column(name = "telephone", length = 20)
     private String telephone;
-
     /**
      * 法人
      */

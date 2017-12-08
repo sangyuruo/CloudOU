@@ -4,6 +4,8 @@ import com.emcloud.ou.domain.Company;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 /**
  * Service Interface for managing Company.
  */
@@ -39,7 +41,18 @@ public interface CompanyService {
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<Company> findByCompanyName(Pageable pageable,String companyname);
+    Page<Company> findByCOrA(Pageable pageable,String companyname,String addressName);
+
+
+//    /**
+//     *  Get all the companies by company name or parentCompanyName.
+//     *
+//     *  @param pageable the pagination information
+//     *  @return the list of entities
+//     */
+
+
+    //Page<Company> findByaddressorCname(Pageable pageable, String companyname, String address);
 
     /**
      *  Get the "id" company.

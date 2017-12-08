@@ -12,6 +12,7 @@ import com.emcloud.ou.web.rest.errors.ExceptionTranslator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.validator.PublicClassValidator;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -562,6 +563,12 @@ public class CompanyResourceIntTest {
         assertThat(testCompany.getUpdatedBy()).isEqualTo(UPDATED_UPDATED_BY);
         assertThat(testCompany.getUpdateTime()).isEqualTo(UPDATED_UPDATE_TIME);
     }
+
+//    @Test
+//    public void mytest(){
+//        List <Company> companies = companyRepository.("a","a");
+//        System.out.println(companies.size());
+//    }
 
     @Test
     @Transactional
