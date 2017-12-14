@@ -19,5 +19,4 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
    // @Query("from Company c where  c.addressName like %:companyName% or c.companyName like %:addressName%")
    // List<Company> findalltest(@Param("companyName") String companyName, @Param("addressName") String addressName);
    Page<Company> findByCompanyNameContainingOrAddressNameContaining(Pageable pageable, String companyName, String addressName);
-
 }

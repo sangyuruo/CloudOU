@@ -10,6 +10,7 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
+import java.util.WeakHashMap;
 
 /**
  * 组织架构表

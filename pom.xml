@@ -385,6 +385,20 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- Kafka support 这是kafka的配置信息-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-stream</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-stream-binder-kafka</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-stream-test-support</artifactId>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-hystrix</artifactId>
@@ -440,6 +454,7 @@
             <version>${cucumber.version}</version>
             <scope>test</scope>
         </dependency>
+
         <!-- jhipster-needle-maven-add-dependency -->
     </dependencies>
     <build>

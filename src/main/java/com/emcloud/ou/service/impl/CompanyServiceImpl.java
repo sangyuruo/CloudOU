@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
-import java.util.List;
+import java.time.temporal.ChronoUnit;
 
 
 /**
@@ -40,9 +40,9 @@ public class CompanyServiceImpl implements CompanyService{
     public Company save(Company company) {
         log.debug("Request to save Company : {}", company);
         company.setCreatedBy(SecurityUtils.getCurrentUserLogin());
-        company.setCreateTime(Instant.now());
+        company.setCreateTime(Instant.now() );
         company.setUpdatedBy(SecurityUtils.getCurrentUserLogin());
-        company.setUpdateTime(Instant.now());
+        company.setUpdateTime(Instant.now() );
         return companyRepository.save(company);
     }
 
@@ -75,7 +75,7 @@ public class CompanyServiceImpl implements CompanyService{
 
 
     /**
-     *  Get all the companies by companyname .
+     *  Get all the companies by companyName .
      *
      *  @param pageable the pagination information
      *  @return the list of entities
@@ -83,7 +83,7 @@ public class CompanyServiceImpl implements CompanyService{
     @Override
     @Transactional(readOnly = true)
     public Page<Company> findByCOrA(Pageable pageable,String companyname,String addressname) {
-        log.debug("Request to get all Companies by companyname");
+        log.debug("Request to get all Companies by companyName");
         return companyRepository.findByCompanyNameContainingOrAddressNameContaining(pageable,companyname,addressname);
     }
 
