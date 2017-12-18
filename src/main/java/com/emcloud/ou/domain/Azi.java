@@ -23,8 +23,8 @@ public class Azi {
 //
 //        double bill = costBeforeTax.stream().map((cost) -> cost + .12*cost).reduce((sum, cost) -> sum + cost).get();
 //        System.out.println("JAVA8 +Total : " + bill);
-        System.out.println(Instant.now().plus(8, ChronoUnit.HOURS)) ;
-        System.out.println(Instant.now()) ;
+            System.out.println(Instant.now().plus(8, ChronoUnit.HOURS)) ;
+            System.out.println(Instant.now()) ;
 
     }
 }

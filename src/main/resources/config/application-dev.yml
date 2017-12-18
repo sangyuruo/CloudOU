@@ -27,6 +27,7 @@ spring:
                 binder:
                     brokers: 192.168.2.202
                     zk-nodes: 192.168.2.202
+                    healthTimeout: 60
             bindings:
                 output:
                     destination: topic-greetings
@@ -116,15 +117,22 @@ jhipster:
         hazelcast: # Hazelcast distributed cache
             time-to-live-seconds: 3600
             backup-count: 1
+            management-center:
+                enabled: true # Hazelcast management center is disabled by default
+                update-interval: 3 # Updates are sent to the Hazelcast management center every 3 seconds by default
+                # Default URL for Hazelcast management center when using JHipster's Docker Compose configuration
+                # See src/main/docker/hazelcast-management-center.yml
+                # Warning, the default port is 8180 as port 8080 is already used by JHipster
+                url: http://localhost:8180/mancenter
     # CORS is disabled by default on microservices, as you should access them through a gateway.
     # If you want to enable it, please uncomment the configuration below.
-    # cors:
-        # allowed-origins: "*"
-        # allowed-methods: "*"
-        # allowed-headers: "*"
-        # exposed-headers: "Authorization"
-        # allow-credentials: true
-        # max-age: 1800
+    #cors:
+        #allowed-methods: "*"
+        #allowed-headers: "*"
+        #exposed-headers: "Authorization"
+        #allow-credentials: true
+        #max-age: 1800
+
     security:
         client-authorization:
             access-token-uri: http://emclouduaa/oauth/token
