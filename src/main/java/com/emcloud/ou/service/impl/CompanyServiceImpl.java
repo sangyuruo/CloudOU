@@ -48,6 +48,8 @@ public class CompanyServiceImpl implements CompanyService {
         company.setCreateTime(Instant.now().plus(Duration.ofHours(8)));
         company.setUpdatedBy(SecurityUtils.getCurrentUserLogin());
         company.setUpdateTime(Instant.now());
+
+        //return companyRepository.save(company);
         Company company1 = companyRepository.save(company);
         companyRepositorySearch.save(company1);
         return company1;
@@ -64,7 +66,10 @@ public class CompanyServiceImpl implements CompanyService {
         log.debug("Request to save Company : {}", company);
         company.setUpdatedBy(SecurityUtils.getCurrentUserLogin());
         company.setUpdateTime(Instant.now());
-        return companyRepository.save(company);
+
+        Company company1 = companyRepository.save(company);
+        companyRepositorySearch.save(company1);
+        return company1;
     }
 
     @Override
@@ -109,7 +114,8 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Company : {}", id);
-        companyRepository.delete(id);
+        companyRepositorySearch.delete(id);
+       // companyRepository.delete(id);
     }
 
     @Override
