@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Queue;
 
 public class emm {
-    public void a( ) {
+    public static void a () {
         Config cfg=new Config();
         HazelcastInstance hazelcastInstance = Hazelcast.newHazelcastInstance(cfg);
         Map<Integer, String> customers = hazelcastInstance.getMap( "customers" );

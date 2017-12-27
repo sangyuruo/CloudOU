@@ -54,6 +54,15 @@ management:
         mail:
             enabled: false # When using the MailService, configure an SMTP server and set this to true
 spring:
+    data:
+        elasticsearch:
+            # cluster-name:
+            # cluster-nodes: localhost:9300
+            cluster-name: company
+            cluster-nodes: localhost:9300
+            local: false
+            repositories:
+                enable: true
     cloud:
         stream:
             bindings:

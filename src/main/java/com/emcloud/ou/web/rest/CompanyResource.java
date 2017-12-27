@@ -93,21 +93,27 @@ public class CompanyResource {
     @GetMapping("/companies")
     @Timed
     public ResponseEntity<List<Company>> getAllCompanies
-    (@RequestParam(value = "query",required = false) String companyName,@ApiParam Pageable pageable) {
+    (@RequestParam(value = "query", required = false) String companyName, @ApiParam Pageable pageable) {
         log.debug("REST request to get a page of Companies");
         Page<Company> page;
-        if(StringUtils.isBlank(companyName)){
+        if (StringUtils.isBlank(companyName)) {
             page = companyService.findAll(pageable);
-        }else {
+        } else {
             String addressName = companyName;
-            page = companyService.findByCOrA(pageable,companyName,addressName);
+            page = companyService.findByCOrA(pageable, companyName, addressName);
         }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/companies");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
 
-
+    @GetMapping("/es")
+    @Timed
+    public List<Company> getAllEs() {
+        log.debug("REST request to get a page of Companies");
+        List<Company> results = companyService.findes();
+        return results;
+    }
 
     /**
      * GET  /companies/:id : get the "id" company.

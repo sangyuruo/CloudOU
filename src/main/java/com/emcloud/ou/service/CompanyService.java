@@ -68,4 +68,6 @@ public interface CompanyService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+    List<Company> findes();
 }

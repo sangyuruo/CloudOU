@@ -4,21 +4,25 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
 /**
  * 公司表
+ *
  * @author daiziying
  */
 @ApiModel(description = "公司表 @author daiziying")
 @Entity
 @Table(name = "company")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Document(indexName = "company", type = "company", shards = 1, replicas = 0, refreshInterval = "-1")
 public class Company implements Serializable {
 
     private static final long serialVersionUID = 1L;

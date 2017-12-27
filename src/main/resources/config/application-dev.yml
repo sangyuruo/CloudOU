@@ -113,17 +113,17 @@ server:
 jhipster:
     http:
         version: V_1_1 # To use HTTP/2 you will need SSL support (see above the "server.ssl" configuration)
-    cache: # Cache configuration
-        hazelcast: # Hazelcast distributed cache
-            time-to-live-seconds: 3600
-            backup-count: 1
-            management-center:
-                enabled: true # Hazelcast management center is disabled by default
-                update-interval: 3 # Updates are sent to the Hazelcast management center every 3 seconds by default
-                # Default URL for Hazelcast management center when using JHipster's Docker Compose configuration
-                # See src/main/docker/hazelcast-management-center.yml
-                # Warning, the default port is 8180 as port 8080 is already used by JHipster
-                url: http://localhost:8180/mancenter
+#    cache: # Cache configuration
+#        hazelcast: # Hazelcast distributed cache
+#            time-to-live-seconds: 3600
+#            backup-count: 1
+#            management-center:
+#                enabled: true # Hazelcast management center is disabled by default
+#                update-interval: 3 # Updates are sent to the Hazelcast management center every 3 seconds by default
+#                # Default URL for Hazelcast management center when using JHipster's Docker Compose configuration
+#                # See src/main/docker/hazelcast-management-center.yml
+#                # Warning, the default port is 8180 as port 8080 is already used by JHipster
+#                url: http://localhost:8180/mancenter
     # CORS is disabled by default on microservices, as you should access them through a gateway.
     # If you want to enable it, please uncomment the configuration below.
     #cors:
