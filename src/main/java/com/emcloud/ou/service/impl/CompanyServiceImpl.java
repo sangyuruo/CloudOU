@@ -45,10 +45,9 @@ public class CompanyServiceImpl implements CompanyService {
     public Company save(Company company) {
         log.debug("Request to save Company : {}", company);
         company.setCreatedBy(SecurityUtils.getCurrentUserLogin());
-        company.setCreateTime(Instant.now().plus(Duration.ofHours(8)));
+        company.setCreateTime(Instant.now());
         company.setUpdatedBy(SecurityUtils.getCurrentUserLogin());
         company.setUpdateTime(Instant.now());
-
         //return companyRepository.save(company);
         Company company1 = companyRepository.save(company);
         companyRepositorySearch.save(company1);
@@ -66,7 +65,6 @@ public class CompanyServiceImpl implements CompanyService {
         log.debug("Request to save Company : {}", company);
         company.setUpdatedBy(SecurityUtils.getCurrentUserLogin());
         company.setUpdateTime(Instant.now());
-
         Company company1 = companyRepository.save(company);
         companyRepositorySearch.save(company1);
         return company1;
