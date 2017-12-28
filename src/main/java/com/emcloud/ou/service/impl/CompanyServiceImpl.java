@@ -9,12 +9,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
+
+import static org.elasticsearch.index.query.QueryBuilders.multiMatchQuery;
 
 
 /**
@@ -76,19 +80,26 @@ public class CompanyServiceImpl implements CompanyService {
         return companyRepositorySearch.findAll(pageable);
     }
 
-
-    /**
-     * Get all the companies by companyName .
-     *
-     * @param pageable the pagination information
-     * @return the list of entities
-     */
     @Override
-    @Transactional(readOnly = true)
-    public Page<Company> findByCOrA(Pageable pageable, String companyname, String addressname) {
-        log.debug("Request to get all Companies by companyName");
-        return companyRepository.findByCompanyNameContainingOrAddressNameContaining(pageable, companyname, addressname);
+    public Page<Company> findAll(String query, Pageable pageable) {
+
+        log.debug("Request to get all Companies");
+        return companyRepositorySearch.findByAll(query,pageable);
     }
+
+//
+//    /**
+//     * Get all the companies by companyName .
+//     *
+//     * @param pageable the pagination information
+//     * @return the list of entities
+//     */
+//    @Override
+//    @Transactional(readOnly = true)
+//    public Page<Company> findalls(Pageable pageable, String companyname, String addressname,String cpn,String ccode,String countryc,String cityc ) {
+//        log.debug("Request to get all Companies by companyName");
+//        return companyRepositorySearch.findByCompanyNameContainingOrAddressNameContainingOrParentCompanyNameContainingOrCompanyCodeContainingOrCityCodeContainingOrCountryCodeContaining(pageable, companyname, addressname,cpn,ccode,countryc,cityc);
+//    }
 
 
     /**

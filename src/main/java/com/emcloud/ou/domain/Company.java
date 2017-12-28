@@ -184,6 +184,7 @@ public class Company implements Serializable {
     @Column(name = "updated_by", length = 20, nullable = false)
     private String updatedBy;
 
+    private  String all;
     /**
      * 修改时间
      */
@@ -506,5 +507,13 @@ public class Company implements Serializable {
             ", updatedBy='" + getUpdatedBy() + "'" +
             ", updateTime='" + getUpdateTime() + "'" +
             "}";
+    }
+
+    public String getAll() {
+        return all;
+    }
+
+    public void setAll(String all) {
+        this.all = all;
     }
 }

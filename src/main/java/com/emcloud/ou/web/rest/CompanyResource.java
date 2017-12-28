@@ -99,8 +99,10 @@ public class CompanyResource {
         if (StringUtils.isBlank(companyName)) {
             page = companyService.findAll(pageable);
         } else {
-            String addressName = companyName;
-            page = companyService.findByCOrA(pageable, companyName, addressName);
+//            String addressName = companyName;
+//            page = companyService.findByCOrA(pageable, companyName, addressName);
+            //page = companyService.findalls(pageable,companyName);
+                page=companyService.findAll(companyName,pageable);
         }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/companies");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
