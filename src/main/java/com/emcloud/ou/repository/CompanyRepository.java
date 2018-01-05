@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
 
+import java.util.List;
 
 
 /**
@@ -20,4 +21,5 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
    // List<Company> findalltest(@Param("companyName") String companyName, @Param("addressName") String addressName);
    Page<Company> findByCompanyNameContainingOrAddressNameContaining(Pageable pageable, String companyName, String addressName);
 
+   List<Company> findAll();
 }

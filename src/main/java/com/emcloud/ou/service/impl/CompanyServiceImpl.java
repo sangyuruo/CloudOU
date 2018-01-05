@@ -73,6 +73,12 @@ public class CompanyServiceImpl implements CompanyService{
         return companyRepository.findAll(pageable);
     }
 
+    @Override
+    public List<Company> findAll() {
+        log.debug("Request to get all Companies");
+        return companyRepository.findAll();
+    }
+
 
     /**
      *  Get all the companies by companyname .

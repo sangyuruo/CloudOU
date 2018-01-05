@@ -84,26 +84,37 @@ public class CompanyResource {
             .body(result);
     }
 
-    /**
-     * GET  /companies : get all the companies.
-     *
-     * @param pageable the pagination information
-     * @return the ResponseEntity with status 200 (OK) and the list of companies in body
-     */
-    @GetMapping("/companies")
-    @Timed
-    public ResponseEntity<List<Company>> getAllCompanies
-    (@RequestParam(value = "query",required = false) String companyName,@ApiParam Pageable pageable) {
+//    /**
+//     * GET  /companies : get all the companies.
+//     *
+//     * @param pageable the pagination information
+//     * @return the ResponseEntity with status 200 (OK) and the list of companies in body
+//     */
+//    @GetMapping("/companies")
+//    @Timed
+//    public ResponseEntity<List<Company>> getAllCompanies
+//    (@RequestParam(value = "query",required = false) String companyName,@ApiParam Pageable pageable) {
+//        log.debug("REST request to get a page of Companies");
+//        Page<Company> page;
+//        if(StringUtils.isBlank(companyName)){
+//            page = companyService.findAll(pageable);
+//        }else {
+//            String addressName = companyName;
+//            page = companyService.findByCOrA(pageable,companyName,addressName);
+//        }
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/companies");
+//        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+//    }
+
+
+    public List<Company> getAllCompanies(@RequestParam(value = "query",required = false) String companyName) {
         log.debug("REST request to get a page of Companies");
-        Page<Company> page;
+        List<Company> companyList = null;
         if(StringUtils.isBlank(companyName)){
-            page = companyService.findAll(pageable);
-        }else {
-            String addressName = companyName;
-            page = companyService.findByCOrA(pageable,companyName,addressName);
+            companyList = companyService.findAll();
         }
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/companies");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+
+        return companyList;
     }
 
 

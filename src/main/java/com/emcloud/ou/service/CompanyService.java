@@ -35,6 +35,7 @@ public interface CompanyService {
      */
     Page<Company> findAll(Pageable pageable);
 
+    List<Company> findAll();
     /**
      *  Get all the companies by companyname.
      *
