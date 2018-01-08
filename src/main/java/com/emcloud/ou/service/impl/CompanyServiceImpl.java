@@ -83,13 +83,14 @@ public class CompanyServiceImpl implements CompanyService{
     /**
      *  Get all the companies by companyname .
      *
+     *  @param pageable the pagination information
      *  @return the list of entities
      */
     @Override
     @Transactional(readOnly = true)
-    public List<Company> findByCOrA(String companyname,String addressname) {
+    public Page<Company> findByCOrA(Pageable pageable,String companyname,String addressname) {
         log.debug("Request to get all Companies by companyname");
-        return companyRepository.findByCompanyNameContainingOrAddressNameContaining(companyname,addressname);
+        return companyRepository.findByCompanyNameContainingOrAddressNameContaining(pageable,companyname,addressname);
     }
 
 
