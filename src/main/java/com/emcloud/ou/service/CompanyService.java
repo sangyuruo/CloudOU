@@ -39,10 +39,9 @@ public interface CompanyService {
     /**
      *  Get all the companies by companyname.
      *
-     *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<Company> findByCOrA(Pageable pageable,String companyname,String addressName);
+    List<Company> findByCOrA(String companyname,String addressName);
 
 
 //    /**
