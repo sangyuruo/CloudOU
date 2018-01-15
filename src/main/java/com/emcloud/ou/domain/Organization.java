@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -176,6 +177,7 @@ public class Organization implements Serializable {
     @OneToOne
     @JoinColumn(unique = true)
     private Company company;
+
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -478,4 +480,5 @@ public class Organization implements Serializable {
             ", updateTime='" + getUpdateTime() + "'" +
             "}";
     }
+
 }

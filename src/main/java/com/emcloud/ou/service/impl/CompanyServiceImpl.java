@@ -1,5 +1,4 @@
 package com.emcloud.ou.service.impl;
-
 import com.emcloud.ou.security.SecurityUtils;
 import com.emcloud.ou.service.CompanyService;
 import com.emcloud.ou.domain.Company;
@@ -10,7 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.time.Instant;
 import java.util.List;
 
