@@ -115,14 +115,14 @@ public class OrganizationResource {
                             }
                         }
                     } else {
-                        sb.append(", \"children\" :[ \n");
+                        sb.append(",\"children\" :[ \n");
                         // sb.append( "</li> \n" );
                     }
                 }
                 sb.append("{ \n");
-                sb.append("\"id\"").append(":").append(+ nav.getId()).append(",");
-                sb.append("\"text\"").append(":").append(nav.getOrgName()).append(",");
-                sb.append("\"orgCode\"").append(":").append(nav.getOrgCode());
+                sb.append("\"id\"").append(":").append(nav.getId()).append(",");
+                sb.append("\"text\"").append(":\"").append(nav.getOrgName()).append("\",");
+                sb.append("\"orgCode\"").append(":\"").append(nav.getOrgCode()).append("\"");
 
                 lastLevelNum = curLevelNum;
                 preNav = nav;
@@ -139,7 +139,6 @@ public class OrganizationResource {
         return sb;
     }
 
-    @GetMapping("/organizations/tree")
     private static int getLevelNum(Organization org){
         return org.getOrgCode().length() / 2;
     }
