@@ -83,8 +83,8 @@ public class OrganizationResource {
             .body(result);
     }
 
-    @GetMapping("/organizations/tree")
-    public StringBuilder findTree() {
+    @GetMapping("/organizations/tree/{companyCode}")
+    public StringBuilder findTree(@PathVariable String companyCode) {
 
         int lastLevelNum = 0; // 上一次的层次
         int curLevelNum = 0; // 本次对象的层次
@@ -93,7 +93,7 @@ public class OrganizationResource {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
         try {//查询所有菜单
-            List<Organization> allMenu = organizationService.findAllByCompanyCode("hx001");
+            List<Organization> allMenu = organizationService.findAllByCompanyCode(companyCode);
 
             Collections.sort(allMenu, new Comparator<Organization>() {
                 @Override
