@@ -91,6 +91,7 @@ public class OrganizationResource {
         Map<String, Object> data = new HashMap<String, Object>();
 
         StringBuilder sb = new StringBuilder();
+        sb.append("[");
         try {//查询所有菜单
             List<Organization> allMenu = organizationService.findAllByCompanyCode("hx001");
 
@@ -136,6 +137,7 @@ public class OrganizationResource {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        sb.append("]");
         return sb;
     }
 
