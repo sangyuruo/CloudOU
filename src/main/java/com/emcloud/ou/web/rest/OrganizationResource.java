@@ -2,6 +2,7 @@ package com.emcloud.ou.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.emcloud.ou.domain.Organization;
+import com.emcloud.ou.repository.OrganizationRepository;
 import com.emcloud.ou.service.OrganizationService;
 import com.emcloud.ou.web.rest.errors.BadRequestAlertException;
 import com.emcloud.ou.web.rest.util.HeaderUtil;
@@ -21,8 +22,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * REST controller for managing Organization.
@@ -37,7 +37,7 @@ public class OrganizationResource {
 
     private final OrganizationService organizationService;
 
-    public OrganizationResource(OrganizationService organizationService) {
+    public OrganizationResource(OrganizationService organizationService ) {
         this.organizationService = organizationService;
     }
 
@@ -83,6 +83,67 @@ public class OrganizationResource {
             .body(result);
     }
 
+    @GetMapping("/organizations/tree")
+    public StringBuilder findTree() {
+
+        int lastLevelNum = 0; // 上一次的层次
+        int curLevelNum = 0; // 本次对象的层次
+        Map<String, Object> data = new HashMap<String, Object>();
+
+        StringBuilder sb = new StringBuilder();
+        try {//查询所有菜单
+            List<Organization> allMenu = organizationService.findAllByCompanyCode("hx001");
+
+            Collections.sort(allMenu, new Comparator<Organization>() {
+                @Override
+                public int compare(Organization o1, Organization o2) {
+                    return o1.getOrgCode().compareTo(o2.getOrgCode());
+                }
+            });
+            Organization preNav = null;
+            for (Organization nav : allMenu) {
+                curLevelNum = getLevelNum(nav);
+                if (null != preNav) {
+                    if (lastLevelNum == curLevelNum) { // 同一层次的
+                        sb.append("}, \n");
+                    } else if (lastLevelNum > curLevelNum) { // 这次的层次比上次高一层，也即跳到上一层
+                        sb.append("} \n");
+                        for (int j = curLevelNum; j < lastLevelNum; j++) {
+                            sb.append("]} \n");
+                            if (j == lastLevelNum - 1) {
+                                sb.append(", \n");
+                            }
+                        }
+                    } else {
+                        sb.append(", \"children\" :[ \n");
+                        // sb.append( "</li> \n" );
+                    }
+                }
+                sb.append("{ \n");
+                sb.append("\"id\"").append(":").append(+ nav.getId()).append(",");
+                sb.append("\"text\"").append(":").append(nav.getOrgName()).append(",");
+                sb.append("\"orgCode\"").append(":").append(nav.getOrgCode());
+
+                lastLevelNum = curLevelNum;
+                preNav = nav;
+            }
+
+            sb.append("} \n");
+            for (int j = 1; j < curLevelNum; j++) {
+                sb.append("]} \n");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return sb;
+    }
+
+    @GetMapping("/organizations/tree")
+    private static int getLevelNum(Organization org){
+        return org.getOrgCode().length() / 2;
+    }
+
     /**
      * GET  /organizations : get all the organizations.
      *
@@ -112,6 +173,7 @@ public class OrganizationResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(organization));
     }
 
+
     /**
      * DELETE  /organizations/:id : delete the "id" organization.
      *
@@ -125,4 +187,5 @@ public class OrganizationResource {
         organizationService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
 }

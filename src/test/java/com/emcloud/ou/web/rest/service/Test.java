@@ -41,15 +41,11 @@ public class Test {
                 public int compare(Organization o1, Organization o2) {
                     return o1.getOrgCode().compareTo(o2.getOrgCode());
                 }
-
             });
             StringBuilder sb = new StringBuilder();
             Organization preNav = null;
-
             for (Organization nav : allMenu) {
                 curLevelNum = getLevelNum(nav);
-
-
                 if (null != preNav) {
                     if (lastLevelNum == curLevelNum) { // 同一层次的
                         sb.append("}, \n");
@@ -62,15 +58,14 @@ public class Test {
                             }
                         }
                     } else {
-                        sb.append(" \"children\" :  [ \n");
+                        sb.append(" ,\"children\":[ \n");
                         // sb.append( "</li> \n" );
                     }
                 }
-
                 sb.append("{ \n");
-                sb.append("\"id\"").append(":").append("+"+nav.getId()+"+").append(",");
-                sb.append("\"text\"").append(":").append("+"+nav.getOrgName()+"+").append(",");
-                sb.append("\"orgCode\"").append(":").append("+"+nav.getOrgCode()+"+").append(",");
+                sb.append("\"id\"").append(":").append(+ nav.getId()).append(",");
+                sb.append("\"text\"").append(":").append(nav.getOrgName()).append(",");
+                sb.append("\"orgCode\"").append(":").append(nav.getOrgCode());
 
                 lastLevelNum = curLevelNum;
                 preNav = nav;
@@ -80,8 +75,6 @@ public class Test {
             for (int j = 1; j < curLevelNum; j++) {
                 sb.append("]} \n");
             }
-
-//            sb.append("] \n");
             /**
              * 输出构建好的菜单数据。
              *
@@ -98,42 +91,42 @@ public class Test {
     private static int getLevelNum(Organization org){
         return org.getOrgCode().length() / 2;
     }
+//
+//    private static boolean treeLevelUp(Organization preOrg, Organization curOrg) {
+//        // 0101 > 02
+//        return preOrg.getOrgCode().length() > preOrg.getOrgCode().length();
+//    }
+//
+//    private static boolean treeLevelCur(Organization preOrg, Organization curOrg) {
+//        return preOrg.getOrgCode().length() == preOrg.getOrgCode().length();
+//    }
+//
+//    private static boolean treeLevelDown(Organization preOrg, Organization curOrg) {
+//        return preOrg.getOrgCode().length() < preOrg.getOrgCode().length();
+//    }
 
-    private static boolean treeLevelUp(Organization preOrg, Organization curOrg) {
-        // 0101 > 02
-        return preOrg.getOrgCode().length() > preOrg.getOrgCode().length();
-    }
-
-    private static boolean treeLevelCur(Organization preOrg, Organization curOrg) {
-        return preOrg.getOrgCode().length() == preOrg.getOrgCode().length();
-    }
-
-    private static boolean treeLevelDown(Organization preOrg, Organization curOrg) {
-        return preOrg.getOrgCode().length() < preOrg.getOrgCode().length();
-    }
-
-    /**
-     * 获取子节点
-     *
-     * @param id      父节点id
-     * @param allMenu 所有菜单列表
-     * @return 每个根节点下，所有子菜单列表
-     */
-    public static List<Organization> getChild(String id, List<Organization> allMenu) {
-        //子菜单
-        List<Organization> childList = new ArrayList<Organization>();
-        for (Organization nav : allMenu) {
-            if (nav.getParentCode().equals(id)) {
-                childList.add(nav);
-            }
-        }
-        for (Organization nav : childList) {
-        }
-        if (childList.size() == 0) {
-            return new ArrayList<Organization>();
-        }
-        return childList;
-    }
+//    /**
+//     * 获取子节点
+//     *
+//     * @param id      父节点id
+//     * @param allMenu 所有菜单列表
+//     * @return 每个根节点下，所有子菜单列表
+//     */
+//    public static List<Organization> getChild(String id, List<Organization> allMenu) {
+//        //子菜单
+//        List<Organization> childList = new ArrayList<Organization>();
+//        for (Organization nav : allMenu) {
+//            if (nav.getParentCode().equals(id)) {
+//                childList.add(nav);
+//            }
+//        }
+//        for (Organization nav : childList) {
+//        }
+//        if (childList.size() == 0) {
+//            return new ArrayList<Organization>();
+//        }
+//        return childList;
+//    }
 
 
 //    public static String getJeasyTreeData(List<FndResource> datas) {

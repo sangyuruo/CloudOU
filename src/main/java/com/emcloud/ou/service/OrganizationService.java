@@ -4,11 +4,14 @@ import com.emcloud.ou.domain.Organization;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 /**
  * Service Interface for managing Organization.
  */
 public interface OrganizationService {
 
+    List<Organization> findAllByCompanyCode(String companyCode);
     /**
      * Save a organization.
      *

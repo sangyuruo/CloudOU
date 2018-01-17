@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.util.List;
 
 
 /**
@@ -27,6 +28,12 @@ public class OrganizationServiceImpl implements OrganizationService{
 
     public OrganizationServiceImpl(OrganizationRepository organizationRepository) {
         this.organizationRepository = organizationRepository;
+    }
+
+
+    @Override
+    public List<Organization> findAllByCompanyCode(String companyCode) {
+        return organizationRepository.findAllByCompanyCode(companyCode);
     }
 
     /**
