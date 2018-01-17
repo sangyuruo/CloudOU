@@ -139,7 +139,6 @@ public class OrganizationResource {
         return sb;
     }
 
-    @GetMapping("/organizations/tree")
     private static int getLevelNum(Organization org){
         return org.getOrgCode().length() / 2;
     }
