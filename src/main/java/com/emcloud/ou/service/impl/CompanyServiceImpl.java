@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.Instant;
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -41,6 +42,8 @@ public class CompanyServiceImpl implements CompanyService{
         company.setCreateTime(Instant.now());
         company.setUpdatedBy(SecurityUtils.getCurrentUserLogin());
         company.setUpdateTime(Instant.now());
+        company.setCompanyCode(UUID.randomUUID().toString());
+
         return companyRepository.save(company);
     }
 

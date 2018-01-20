@@ -59,7 +59,6 @@ public class Test {
                         }
                     } else {
                         sb.append(" ,\"children\":[ \n");
-                        // sb.append( "</li> \n" );
                     }
                 }
                 sb.append("{ \n");
