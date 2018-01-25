@@ -81,6 +81,18 @@ public class OrganizationServiceImpl implements OrganizationService{
     }
 
     /**
+     *  Get all the organizations.
+     *
+     *  @param orgName the pagination information
+     *  @return the list of entities
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public List<Organization> findByOrgName(String orgName) {
+        log.debug("Request to get all Organization by orgName");
+        return organizationRepository.findByOrgName(orgName);
+    }
+    /**
      *  Get one organization by id.
      *
      *  @param id the id of the entity

@@ -1,5 +1,6 @@
 package com.emcloud.ou.repository;
 
+import com.emcloud.ou.domain.Company;
 import com.emcloud.ou.domain.Organization;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +16,5 @@ import java.util.List;
 @Repository
 public interface OrganizationRepository extends JpaRepository<Organization, Long> {
      List<Organization> findAllByCompanyCode(String companyCode);
+     List<Organization> findByOrgName(String orgName);
 }

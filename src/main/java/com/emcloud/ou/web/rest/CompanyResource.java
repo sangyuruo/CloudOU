@@ -127,8 +127,19 @@ public class CompanyResource {
         return companyList;
     }
 
-
-
+    /**
+     * GET  /companies : get all the companies.
+     *
+     * @param companyName the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of companies in body
+     */
+    @GetMapping("/companies/by-company-name")
+    public List<Company> getAllByCompanyName
+    (@RequestParam(value = "companyName") String companyName ) {
+        log.debug("REST companyName to get a page of Company");
+        List<Company> list = companyService.findByCompanyName(companyName);
+        return list;
+    }
 
     /**
      * GET  /companies/:id : get the "id" company.

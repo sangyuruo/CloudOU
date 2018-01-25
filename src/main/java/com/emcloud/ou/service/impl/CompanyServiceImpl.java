@@ -94,6 +94,18 @@ public class CompanyServiceImpl implements CompanyService{
         return companyRepository.findByCompanyNameContainingOrAddressNameContaining(pageable,companyname,addressname);
     }
 
+/**
+ *  Get all the companies by companyname .
+ *
+ *  @param companyName the pagination information
+ *  @return the list of entities
+ */
+    @Override
+    @Transactional(readOnly = true)
+    public List<Company> findByCompanyName(String companyName) {
+        log.debug("Request to get all Company by companyName");
+        return companyRepository.findByCompanyName(companyName);
+    }
 
     /**
      *  Get one company by id.
