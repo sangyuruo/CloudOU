@@ -127,7 +127,7 @@ public class CompanyResource {
      * @param companyName the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of companies in body
      */
-    @GetMapping("/meter-category-infos/by-company-name")
+    @GetMapping("/companies/by-company-name")
     public List<Company> getAllByCompanyName
     (@RequestParam(value = "companyName") String companyName ) {
         log.debug("REST companyName to get a page of Company");

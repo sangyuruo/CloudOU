@@ -151,7 +151,7 @@ public class OrganizationResource {
      * @param orgName the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of organizations in body
      */
-    @GetMapping("/meter-category-infos/by-org-name")
+    @GetMapping("/organizations/by-org-name")
     public List<Organization> getAllByOrgName
         (@RequestParam(value = "orgName") String orgName ) {
         log.debug("REST orgName to get a page of Organization");
