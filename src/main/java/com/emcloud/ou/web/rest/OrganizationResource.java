@@ -148,6 +148,20 @@ public class OrganizationResource {
     /**
      * GET  /organizations : get all the organizations.
      *
+     * @param orgName the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of organizations in body
+     */
+    @GetMapping("/meter-category-infos/by-org-name")
+    public List<Organization> getAllByOrgName
+        (@RequestParam(value = "orgName") String orgName ) {
+        log.debug("REST orgName to get a page of Organization");
+        List<Organization> list = organizationService.findByOrgName(orgName);
+        return list;
+    }
+
+    /**
+     * GET  /organizations : get all the organizations.
+     *
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of organizations in body
      */

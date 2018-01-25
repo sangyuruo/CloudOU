@@ -12,6 +12,15 @@ import java.util.List;
 public interface OrganizationService {
 
     List<Organization> findAllByCompanyCode(String companyCode);
+
+    /**
+     *  Get all the organizations.
+     *
+     *  @param orgName the pagination information
+     *  @return the list of entities
+     */
+    List<Organization> findByOrgName(String orgName);
+
     /**
      * Save a organization.
      *
