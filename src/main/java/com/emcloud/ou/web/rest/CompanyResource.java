@@ -49,6 +49,8 @@ public class CompanyResource {
      * @return the ResponseEntity with status 201 (Created) and with body the new company, or with status 400 (Bad Request) if the company has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
+
+
     @PostMapping("/companies")
     @Timed
     public ResponseEntity<Company> createCompany(@Valid @RequestBody Company company) throws URISyntaxException {
@@ -71,6 +73,8 @@ public class CompanyResource {
      * or with status 500 (Internal Server Error) if the company couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
+
+
     @PutMapping("/companies")
     @Timed
     public ResponseEntity<Company> updateCompany(@Valid @RequestBody Company company) throws URISyntaxException {
@@ -87,9 +91,11 @@ public class CompanyResource {
     /**
      * GET  /companies : get all the companies.
      *
-  //   * @param pageable the pagination information
-//     * @return the ResponseEntity with status 200 (OK) and the list of companies in body
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of companies in body
      */
+
+
     @GetMapping("/companies")
     @Timed
     public ResponseEntity<List<Company>> getAllCompanies
