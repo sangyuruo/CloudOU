@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 /**
@@ -49,10 +51,17 @@ public class OrganizationServiceImpl implements OrganizationService{
         organization.setCreateTime(Instant.now());
         organization.setUpdatedBy(SecurityUtils.getCurrentUserLogin());
         organization.setUpdateTime(Instant.now());
-        return organizationRepository.save(organization);
+        if (checked(organization.getParentCode(),organization.getOrgCode())){
+            organization.setOrgCode(organization.getOrgCode());
+            return organizationRepository.save(organization);
+        }else {
+            return null;
+        }
     }
-
-
+    public static boolean checked(String fzz,String zz){
+        boolean bool = Pattern.matches("^"+fzz+".*", zz);
+        return bool;
+    }
     /**
      * Update a organization.
      *
