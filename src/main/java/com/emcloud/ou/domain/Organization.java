@@ -91,7 +91,6 @@ public class Organization implements Serializable {
     /**
      * 父组织名
      */
-    @NotNull
     @Size(max = 40)
     @ApiModelProperty(value = "父组织名", required = true)
     @Column(name = "parent_org_name", length = 40, nullable = false)

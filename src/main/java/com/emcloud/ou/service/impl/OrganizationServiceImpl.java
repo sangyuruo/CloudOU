@@ -38,6 +38,11 @@ public class OrganizationServiceImpl implements OrganizationService{
         return organizationRepository.findAllByCompanyCode(companyCode);
     }
 
+    @Override
+    public List<Organization> findAllByCompanyName(String companyName) {
+        return organizationRepository.findAllByCompanyName(companyName);
+    }
+
     /**
      * Save a organization.
      *

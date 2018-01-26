@@ -159,6 +159,15 @@ public class OrganizationResource {
         return list;
     }
 
+    @GetMapping("/organizations/by-company-name/{companyName}")
+    public List<Organization> getAllByCompanyName
+        (@PathVariable String companyName ) {
+        log.debug("REST companyName to get a page of Organization");
+        System.out.println("az===========================阿紫");
+        List<Organization> list = organizationService.findAllByCompanyName(companyName);
+        return list;
+    }
+
     /**
      * GET  /organizations : get all the organizations.
      *
