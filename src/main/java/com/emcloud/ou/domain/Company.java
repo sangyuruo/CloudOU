@@ -74,7 +74,6 @@ public class Company implements Serializable {
     /**
      * 城市代码
      */
-    @NotNull
     @Size(max = 64)
     @ApiModelProperty(value = "城市代码", required = true)
     @Column(name = "city_code", length = 64, nullable = false)
@@ -194,8 +193,7 @@ public class Company implements Serializable {
     private Instant updateTime;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
-
-    public  Company(){}
+     
     public Long getId() {
         return id;
     }
