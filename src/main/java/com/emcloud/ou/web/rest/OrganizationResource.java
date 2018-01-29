@@ -163,7 +163,7 @@ public class OrganizationResource {
     public List<Organization> getAllByCompanyName
         (@PathVariable String companyName ) {
         log.debug("REST companyName to get a page of Organization");
-        System.out.println("az===========================阿紫");
+
         List<Organization> list = organizationService.findAllByCompanyName(companyName);
         return list;
     }
