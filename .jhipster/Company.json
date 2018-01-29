@@ -62,6 +62,16 @@
             "fieldValidateRulesMaxlength": 64
         },
         {
+            "fieldName": "cityName",
+            "javadoc": "城市名称",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "required"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        },
+        {
             "fieldName": "addressCode",
             "javadoc": "地址代码",
             "fieldType": "String",

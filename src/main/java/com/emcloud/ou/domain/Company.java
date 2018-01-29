@@ -79,7 +79,13 @@ public class Company implements Serializable {
     @ApiModelProperty(value = "城市代码", required = true)
     @Column(name = "city_code", length = 64, nullable = false)
     private String cityCode;
-
+    /**
+     * 城市名称
+     */
+    @Size(max = 100)
+    @ApiModelProperty(value = "城市名称", required = true)
+    @Column(name = "city_name", length = 100, nullable = false)
+    private String cityName;
     /**
      * 地址代码
      */
@@ -188,6 +194,8 @@ public class Company implements Serializable {
     private Instant updateTime;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+
+    public  Company(){}
     public Long getId() {
         return id;
     }
@@ -455,6 +463,16 @@ public class Company implements Serializable {
     public void setUpdateTime(Instant updateTime) {
         this.updateTime = updateTime;
     }
+    public String getCityName() {
+        return cityName;
+    }
+    public Company cityName(String cityName) {
+        this.cityName = cityName;
+        return  this;
+    }
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -487,6 +505,7 @@ public class Company implements Serializable {
             ", companyCode='" + getCompanyCode() + "'" +
             ", countryCode='" + getCountryCode() + "'" +
             ", cityCode='" + getCityCode() + "'" +
+            ", cityName='" + getCityName() + "'" +
             ", addressCode='" + getAddressCode() + "'" +
             ", addressName='" + getAddressName() + "'" +
             ", telephone='" + getTelephone() + "'" +
@@ -503,4 +522,6 @@ public class Company implements Serializable {
             ", updateTime='" + getUpdateTime() + "'" +
             "}";
     }
+
+
 }

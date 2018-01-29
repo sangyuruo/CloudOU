@@ -313,7 +313,6 @@ public class Organization implements Serializable {
         this.addressCode = addressCode;
         return this;
     }
-
     public void setAddressCode(String addressCode) {
         this.addressCode = addressCode;
     }
