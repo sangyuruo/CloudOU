@@ -177,13 +177,6 @@ public class Organization implements Serializable {
     @JoinColumn(unique = true)
     private Company company;
 
-    public Organization( ) {
-
-<<<<<<< HEAD
-
-=======
-    }
->>>>>>> 304306bcd55fb1389fe9bdba2640a9d1949ebfbd
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 
 

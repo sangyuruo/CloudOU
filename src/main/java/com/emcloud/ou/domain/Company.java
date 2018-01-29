@@ -85,13 +85,7 @@ public class Company implements Serializable {
     @ApiModelProperty(value = "城市名称", required = true)
     @Column(name = "city_name", length = 100, nullable = false)
     private String cityName;
-    /**
-     * 城市代码
-     */
-    @Size(max = 100)
-    @ApiModelProperty(value = "城市名称", required = true)
-    @Column(name = "city_name", length = 100, nullable = false)
-    private String cityName;
+
 
     /**
      * 地址代码
@@ -208,7 +202,7 @@ public class Company implements Serializable {
 
     }
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
-     
+
     public Long getId() {
         return id;
     }
@@ -536,15 +530,4 @@ public class Company implements Serializable {
             "}";
     }
 
-<<<<<<< HEAD
-
-=======
-    public String getCityName() {
-        return cityName;
-    }
-
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
-    }
->>>>>>> 304306bcd55fb1389fe9bdba2640a9d1949ebfbd
 }
