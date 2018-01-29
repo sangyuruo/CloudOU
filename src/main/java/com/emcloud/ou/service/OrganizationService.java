@@ -13,6 +13,9 @@ public interface OrganizationService {
 
     List<Organization> findAllByCompanyCode(String companyCode);
 
+
+    List<Organization> findAllByCompanyName(String companyName);
+
     /**
      *  Get all the organizations.
      *

@@ -15,6 +15,7 @@ import java.util.List;
 @SuppressWarnings("unused")
 @Repository
 public interface OrganizationRepository extends JpaRepository<Organization, Long> {
-     List<Organization> findAllByCompanyCode(String companyCode);
+    List<Organization> findAllByCompanyCode(String companyCode);
+    List<Organization> findAllByCompanyName(String companyName);
      List<Organization> findByOrgName(String orgName);
 }

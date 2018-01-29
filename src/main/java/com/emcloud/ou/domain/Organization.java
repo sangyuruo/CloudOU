@@ -91,7 +91,6 @@ public class Organization implements Serializable {
     /**
      * 父组织名
      */
-    @NotNull
     @Size(max = 40)
     @ApiModelProperty(value = "父组织名", required = true)
     @Column(name = "parent_org_name", length = 40, nullable = false)
@@ -178,15 +177,19 @@ public class Organization implements Serializable {
     @JoinColumn(unique = true)
     private Company company;
 
+    public Organization( ) {
 
+<<<<<<< HEAD
 
+=======
+    }
+>>>>>>> 304306bcd55fb1389fe9bdba2640a9d1949ebfbd
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 
 
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }

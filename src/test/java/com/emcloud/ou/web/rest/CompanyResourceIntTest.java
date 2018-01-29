@@ -587,6 +587,7 @@
 //        assertThat(companyList).hasSize(databaseSizeBeforeUpdate + 1);
 //    }
 //
+<<<<<<< HEAD
 //    @Test
 //    @Transactional
 //    public void deleteCompany() throws Exception {
@@ -619,4 +620,38 @@
 //        company1.setId(null);
 //        assertThat(company1).isNotEqualTo(company2);
 //    }
+=======
+//    @Test
+//    @Transactional
+//    public void deleteCompany() throws Exception {
+//        // Initialize the database
+//        companyService.save(company);
+//
+//        int databaseSizeBeforeDelete = companyRepository.findAll().size();
+//
+//        // Get the company
+//        restCompanyMockMvc.perform(delete("/api/companies/{id}", company.getId())
+//            .accept(TestUtil.APPLICATION_JSON_UTF8))
+//            .andExpect(status().isOk());
+//
+//        // Validate the database is empty
+//        List<Company> companyList = companyRepository.findAll();
+//        assertThat(companyList).hasSize(databaseSizeBeforeDelete - 1);
+//    }
+//
+////    @Test
+////    @Transactional
+////    public void equalsVerifier() throws Exception {
+////        TestUtil.equalsVerifier(Company.class);
+////        Company company1 = new Company(cityName);
+////        company1.setId(1L);
+////        Company company2 = new Company(cityName);
+////        company2.setId(company1.getId());
+////        assertThat(company1).isEqualTo(company2);
+////        company2.setId(2L);
+////        assertThat(company1).isNotEqualTo(company2);
+////        company1.setId(null);
+////        assertThat(company1).isNotEqualTo(company2);
+////    }
+>>>>>>> 304306bcd55fb1389fe9bdba2640a9d1949ebfbd
 //}
