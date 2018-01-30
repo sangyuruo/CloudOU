@@ -31,7 +31,6 @@ public class Organization implements Serializable {
     /**
      * 组织代码
      */
-    @NotNull
     @Size(max = 64)
     @ApiModelProperty(value = "组织代码", required = true)
     @Column(name = "org_code", length = 64, nullable = false)
@@ -40,7 +39,6 @@ public class Organization implements Serializable {
     /**
      * 组织名称
      */
-    @NotNull
     @Size(max = 40)
     @ApiModelProperty(value = "组织名称", required = true)
     @Column(name = "org_name", length = 40, nullable = false)
@@ -57,7 +55,6 @@ public class Organization implements Serializable {
     /**
      * 公司代码
      */
-    @NotNull
     @Size(max = 64)
     @ApiModelProperty(value = "公司代码", required = true)
     @Column(name = "company_code", length = 64, nullable = false)
@@ -82,7 +79,6 @@ public class Organization implements Serializable {
     /**
      * 公司名
      */
-    @NotNull
     @Size(max = 40)
     @ApiModelProperty(value = "公司名", required = true)
     @Column(name = "company_name", length = 40, nullable = false)
@@ -99,7 +95,6 @@ public class Organization implements Serializable {
     /**
      * 地址名称
      */
-    @NotNull
     @Size(max = 40)
     @ApiModelProperty(value = "地址名称", required = true)
     @Column(name = "address_name", length = 40, nullable = false)
@@ -138,7 +133,6 @@ public class Organization implements Serializable {
     /**
      * 是否可用
      */
-    @NotNull
     @ApiModelProperty(value = "是否可用", required = true)
     @Column(name = "enable", nullable = false)
     private Boolean enable;

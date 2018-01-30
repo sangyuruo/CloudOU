@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -56,6 +57,8 @@ public class OrganizationServiceImpl implements OrganizationService{
         organization.setCreateTime(Instant.now());
         organization.setUpdatedBy(SecurityUtils.getCurrentUserLogin());
         organization.setUpdateTime(Instant.now());
+        organization.setCompanyCode(UUID.randomUUID().toString());
+
         if (checked(organization.getParentCode(),organization.getOrgCode())){
             organization.setOrgCode(organization.getOrgCode());
             return organizationRepository.save(organization);
