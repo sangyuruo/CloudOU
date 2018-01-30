@@ -624,7 +624,7 @@ public class CompanyResourceIntTest {
         assertThat(company1).isNotEqualTo(company2);
     }
 
-   
+
 
 //    @Test
 //    @Transactional

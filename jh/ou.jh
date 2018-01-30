@@ -14,7 +14,7 @@ entity Company {
   /** 国家代码 */
   countryCode String maxlength(64) required,
   /** 城市代码 */
-  cityCode String maxlength(64) required,
+  cityCode String maxlength(64) ,
   /** 城市名称 */
   cityName String maxlength(100) required,
   /** 地址代码 */

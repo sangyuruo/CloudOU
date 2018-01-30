@@ -56,8 +56,7 @@
             "javadoc": "城市代码",
             "fieldType": "String",
             "fieldValidateRules": [
-                "maxlength",
-                "required"
+                "maxlength"
             ],
             "fieldValidateRulesMaxlength": 64
         },
@@ -66,8 +65,7 @@
             "javadoc": "城市名称",
             "fieldType": "String",
             "fieldValidateRules": [
-                "maxlength",
-                "required"
+                "maxlength"
             ],
             "fieldValidateRulesMaxlength": 100
         },
