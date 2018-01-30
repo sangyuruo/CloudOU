@@ -53,18 +53,21 @@ public class OrganizationServiceImpl implements OrganizationService{
     @Override
     public Organization save(Organization organization) {
         log.debug("Request to save Organization : {}", organization);
+
+     //   organization.setCompanyCode(UUID.randomUUID().toString());
+
         organization.setCreatedBy(SecurityUtils.getCurrentUserLogin());
         organization.setCreateTime(Instant.now());
         organization.setUpdatedBy(SecurityUtils.getCurrentUserLogin());
         organization.setUpdateTime(Instant.now());
-        organization.setCompanyCode(UUID.randomUUID().toString());
-
         if (checked(organization.getParentCode(),organization.getOrgCode())){
             organization.setOrgCode(organization.getOrgCode());
             return organizationRepository.save(organization);
         }else {
             return null;
         }
+
+
     }
     public static boolean checked(String fzz,String zz){
         boolean bool = Pattern.matches("^"+fzz+".*", zz);
