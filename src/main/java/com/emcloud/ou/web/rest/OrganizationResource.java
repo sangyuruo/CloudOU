@@ -49,7 +49,7 @@ public class OrganizationResource {
 
     @GetMapping("/organizations/by-org-code/{orgCode}")
     public List<Organization> getAllByOrgCode
-        (@RequestParam(value = "orgCode") String orgCode) {
+        (@PathVariable(value = "orgCode") String orgCode) {
         return organizationService.findByOrgName(orgCode);
     }
 
@@ -59,9 +59,9 @@ public class OrganizationResource {
         return organizationService.findAllByCompanyCode(companyCode);
     }
 
-    @GetMapping("/organizations/by-parent-org-code")
+    @GetMapping("/organizations/by-parent-org-code/{parentOrgCode}")
     public List<Organization> getAllByParentOrgCode
-        (@RequestParam(value = "parentOrgCode") String parentOrgCode) {
+        (@PathVariable(value = "parentOrgCode") String parentOrgCode) {
         return organizationService.findByOrgName(parentOrgCode);
     }
 

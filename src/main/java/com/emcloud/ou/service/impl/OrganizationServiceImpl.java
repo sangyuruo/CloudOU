@@ -51,7 +51,7 @@ public class OrganizationServiceImpl implements OrganizationService{
     @Override
     public List<Organization> findByPOrgCode(String PorgCode) {
 
-        return organizationRepository.findAllByParentCode("0");
+        return organizationRepository.findAllByParentCode(PorgCode);
     }
 
     @Override
