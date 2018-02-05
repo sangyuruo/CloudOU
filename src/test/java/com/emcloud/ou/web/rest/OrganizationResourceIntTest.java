@@ -600,7 +600,7 @@ public class OrganizationResourceIntTest {
     @Transactional
     public void findTree() throws  Exception{
 
-        System.out.println(organizationService.findtree(DEFAULT_COMPANY_CODE));
+         System.out.println(organizationService.findtree(DEFAULT_COMPANY_CODE));
 
     }
 }

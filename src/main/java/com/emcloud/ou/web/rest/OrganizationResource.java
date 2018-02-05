@@ -86,7 +86,6 @@ public class OrganizationResource {
     @GetMapping("/organizations/tree/{companyCode}")
     public StringBuilder findTree(@PathVariable String companyCode) {
 
-
         int lastLevelNum = 0; // 上一次的层次
         int curLevelNum = 0; // 本次对象的层次
         // Map<String, Object> data = new HashMap<String, Object>();
@@ -104,12 +103,12 @@ public class OrganizationResource {
             Organization preNav = null;
             for (Organization nav : allMenu) {
                 curLevelNum = getLevelNum(nav);
-                if(nav.getOrgCode().length()==2){
-                    sb.append("{ \n");
-                    sb.append("\"label\"").append(":\"").append(nav.getOrgName()).append("\",");
-                    sb.append("\"id\"").append(":").append(nav.getId()).append(",");
-                    sb.append("\"orgCode\"").append(":\"").append(nav.getOrgCode()).append("\"");
-                }
+//                if(nav.getOrgCode().length()==2){
+//                    sb.append("{ \n");
+//                    sb.append("\"label\"").append(":\"").append(nav.getOrgName()).append("\",");
+//                    sb.append("\"id\"").append(":").append(nav.getId()).append(",");
+//                    sb.append("\"orgCode\"").append(":\"").append(nav.getOrgCode()).append("\"");
+//                }
                 if (null != preNav) {
                     if (lastLevelNum == curLevelNum) { // 同一层次的
                         sb.append("}, \n");
@@ -127,8 +126,8 @@ public class OrganizationResource {
                     }
                 }
                 sb.append("{ \n");
+                sb.append("\"label\"").append(":\"").append(nav.getOrgName()).append("\",");
                 sb.append("\"id\"").append(":").append(nav.getId()).append(",");
-                sb.append("\"text\"").append(":\"").append(nav.getOrgName()).append("\",");
                 sb.append("\"orgCode\"").append(":\"").append(nav.getOrgCode()).append("\"");
 
                 lastLevelNum = curLevelNum;
