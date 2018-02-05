@@ -33,7 +33,7 @@ public interface OrganizationService {
      */
     Organization save(Organization organization);
 
-    StringBuilder findtree(String code);
+  //  StringBuilder findtree(String code);
     /**
      * Update a organization.
      *
