@@ -24,5 +24,7 @@ public interface OrganizationRepository extends JpaRepository<Organization, Long
     List<Organization> findAllByCompanyCode(String companyCode);
     /**根据组织code查所有 */
     List<Organization> findAllByOrgCode(String orgCode);
+    /**根据父组织code查所有 */
+    List<Organization> findAllByParentCode(String PCode);
 
 }

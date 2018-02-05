@@ -12,10 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -49,6 +46,12 @@ public class OrganizationServiceImpl implements OrganizationService{
     @Override
     public List<Organization> findByOrgCode(String orgCode) {
         return organizationRepository.findAllByOrgCode(orgCode);
+    }
+
+    @Override
+    public List<Organization> findByPOrgCode(String PorgCode) {
+
+        return organizationRepository.findAllByParentCode("0");
     }
 
     @Override
@@ -86,15 +89,19 @@ public class OrganizationServiceImpl implements OrganizationService{
     }
     @Override
     public StringBuilder findtree(String companyCode) {
-
         int lastLevelNum = 0; // 上一次的层次
         int curLevelNum = 0; // 本次对象的层次
         // Map<String, Object> data = new HashMap<String, Object>();
-
         StringBuilder sb = new StringBuilder();
         sb.append("[");
+        List<Organization> allMenu=new ArrayList<>();
         try {//查询所有菜单
-            List<Organization> allMenu = findAllByCompanyCode(companyCode);
+            if(companyCode==null || companyCode.equals("")){
+                allMenu = findAll();
+            }else {
+                allMenu = findAllByCompanyCode(companyCode);
+            }
+
             Collections.sort(allMenu, new Comparator<Organization>() {
                 @Override
                 public int compare(Organization o1, Organization o2) {
@@ -104,12 +111,6 @@ public class OrganizationServiceImpl implements OrganizationService{
             Organization preNav = null;
             for (Organization nav : allMenu) {
                 curLevelNum = getLevelNum(nav);
-//                if(nav.getOrgCode().length()==2){
-//                    sb.append("{ \n");
-//                    sb.append("\"label\"").append(":\"").append(nav.getOrgName()).append("\",");
-//                    sb.append("\"id\"").append(":").append(nav.getId()).append(",");
-//                    sb.append("\"orgCode\"").append(":\"").append(nav.getOrgCode()).append("\"");
-//                }
                 if (null != preNav) {
                     if (lastLevelNum == curLevelNum) { // 同一层次的
                         sb.append("}, \n");
@@ -123,23 +124,17 @@ public class OrganizationServiceImpl implements OrganizationService{
                         }
                     } else {
                         sb.append(",\"children\" :[ \n");
-                        // sb.append( "</li> \n" );
                     }
                 }
+                sb.append("{ \n");
+                sb.append("\"label\"").append(":\"").append(nav.getOrgName()).append("\",");
+                sb.append("\"id\"").append(":").append(nav.getId()).append(",");
+                sb.append("\"orgCode\"").append(":\"").append(nav.getOrgCode()).append("\"");
+//                //最子层一个不要下面两句
+//                sb.append("\"expandedIcon\"").append(":\"").append("fa-folder-open" + "\"");
+//                sb.append("\"collapsedIcon\"").append(":\"").append("fa-folder" + "\"");
 
-//                if (curLevelNum>=nav.getOrgCode().length()){
-//                    sb.append("{ \n");
-//                    sb.append("\"label\"").append(":\"").append(nav.getOrgName()).append("\",");
-//                    sb.append("\"id\"").append(":").append(nav.getId()).append(",");
-//                    sb.append("\"orgCode\"").append(":\"").append(nav.getOrgCode()).append("\"");
-//                }else{
-//                    sb.append("{ \n");
-//                    sb.append("\"label\"").append(":\"").append(nav.getOrgName()).append("\",");
-//                    sb.append("\"id\"").append(":").append(nav.getId()).append(",");
-//                    sb.append("\"orgCode\"").append(":\"").append(nav.getOrgCode()).append("\"");
-//                    sb.append("\"expandedIcon\"").append(":\"").append("fa-folder-open"+"\"");
-//                    sb.append("\"collapsedIcon\"").append(":\"").append("fa-folder"+"\"");
-//                }
+
                 lastLevelNum = curLevelNum;
                 preNav = nav;
             }

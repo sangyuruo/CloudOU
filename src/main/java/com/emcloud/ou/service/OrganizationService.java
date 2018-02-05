@@ -17,6 +17,7 @@ public interface OrganizationService {
     List<Organization> findAll();
 
     List<Organization> findByOrgCode(String orgCode);
+    List<Organization> findByPOrgCode(String PorgCode);
 
 
 
