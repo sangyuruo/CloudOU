@@ -1,6 +1,7 @@
 package com.emcloud.ou.service;
 
 import com.emcloud.ou.domain.Organization;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -32,7 +33,7 @@ public interface OrganizationService {
      */
     Organization save(Organization organization);
 
-
+    StringBuilder findtree(String code);
     /**
      * Update a organization.
      *

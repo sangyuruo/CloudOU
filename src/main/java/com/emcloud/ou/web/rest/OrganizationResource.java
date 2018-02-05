@@ -37,7 +37,7 @@ public class OrganizationResource {
 
     private final OrganizationService organizationService;
 
-    public OrganizationResource(OrganizationService organizationService ) {
+    public OrganizationResource(OrganizationService organizationService) {
         this.organizationService = organizationService;
     }
 
@@ -82,19 +82,19 @@ public class OrganizationResource {
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, organization.getId().toString()))
             .body(result);
     }
-
+//
     @GetMapping("/organizations/tree/{companyCode}")
     public StringBuilder findTree(@PathVariable String companyCode) {
 
+
         int lastLevelNum = 0; // 上一次的层次
         int curLevelNum = 0; // 本次对象的层次
-        Map<String, Object> data = new HashMap<String, Object>();
+        // Map<String, Object> data = new HashMap<String, Object>();
 
         StringBuilder sb = new StringBuilder();
         sb.append("[");
         try {//查询所有菜单
             List<Organization> allMenu = organizationService.findAllByCompanyCode(companyCode);
-
             Collections.sort(allMenu, new Comparator<Organization>() {
                 @Override
                 public int compare(Organization o1, Organization o2) {
@@ -104,6 +104,12 @@ public class OrganizationResource {
             Organization preNav = null;
             for (Organization nav : allMenu) {
                 curLevelNum = getLevelNum(nav);
+                if(nav.getOrgCode().length()==2){
+                    sb.append("{ \n");
+                    sb.append("\"label\"").append(":\"").append(nav.getOrgName()).append("\",");
+                    sb.append("\"id\"").append(":").append(nav.getId()).append(",");
+                    sb.append("\"orgCode\"").append(":\"").append(nav.getOrgCode()).append("\"");
+                }
                 if (null != preNav) {
                     if (lastLevelNum == curLevelNum) { // 同一层次的
                         sb.append("}, \n");
@@ -128,7 +134,6 @@ public class OrganizationResource {
                 lastLevelNum = curLevelNum;
                 preNav = nav;
             }
-
             sb.append("} \n");
             for (int j = 1; j < curLevelNum; j++) {
                 sb.append("]} \n");
@@ -139,9 +144,62 @@ public class OrganizationResource {
         }
         sb.append("]");
         return sb;
+//
+//        int lastLevelNum = 0; // 上一次的层次
+//        int curLevelNum = 0; // 本次对象的层次
+//       // Map<String, Object> data = new HashMap<String, Object>();
+//
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("[");
+//        try {//查询所有菜单
+//            List<Organization> allMenu = organizationService.findAllByCompanyCode(companyCode);
+//
+//            Collections.sort(allMenu, new Comparator<Organization>() {
+//                @Override
+//                public int compare(Organization o1, Organization o2) {
+//                    return o1.getOrgCode().compareTo(o2.getOrgCode());
+//                }
+//            });
+//            Organization preNav = null;
+//            for (Organization nav : allMenu) {
+//                curLevelNum = getLevelNum(nav);
+//                if (null != preNav) {
+//                    if (lastLevelNum == curLevelNum) { // 同一层次的
+//                        sb.append("}, \n");
+//                    } else if (lastLevelNum > curLevelNum) { // 这次的层次比上次高一层，也即跳到上一层
+//                        sb.append("} \n");
+//                        for (int j = curLevelNum; j < lastLevelNum; j++) {
+//                            sb.append("]} \n");
+//                            if (j == lastLevelNum - 1) {
+//                                sb.append(", \n");
+//                            }
+//                        }
+//                    } else {
+//                        sb.append(",\"children\" :[ \n");
+//                        // sb.append( "</li> \n" );
+//                    }
+//                }
+//                sb.append("{ \n");
+//                sb.append("\"id\"").append(":").append(nav.getId()).append(",");
+//                sb.append("\"text\"").append(":\"").append(nav.getOrgName()).append("\",");
+//                sb.append("\"orgCode\"").append(":\"").append(nav.getOrgCode()).append("\"");
+//
+//                lastLevelNum = curLevelNum;
+//                preNav = nav;
+//            }
+//            sb.append("} \n");
+//            for (int j = 1; j < curLevelNum; j++) {
+//                sb.append("]} \n");
+//            }
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        sb.append("]");
+//        return sb;
     }
-
-    private static int getLevelNum(Organization org){
+//
+    private static int getLevelNum(Organization org) {
         return org.getOrgCode().length() / 2;
     }
 
@@ -153,7 +211,7 @@ public class OrganizationResource {
      */
     @GetMapping("/organizations/by-org-name")
     public List<Organization> getAllByOrgName
-        (@RequestParam(value = "orgName") String orgName ) {
+    (@RequestParam(value = "orgName") String orgName) {
         log.debug("REST orgName to get a page of Organization");
         List<Organization> list = organizationService.findByOrgName(orgName);
         return list;
@@ -161,7 +219,7 @@ public class OrganizationResource {
 
     @GetMapping("/organizations/by-company-name/{companyName}")
     public List<Organization> getAllByCompanyName
-        (@PathVariable String companyName ) {
+        (@PathVariable String companyName) {
         log.debug("REST companyName to get a page of Organization");
 
         List<Organization> list = organizationService.findAllByCompanyName(companyName);

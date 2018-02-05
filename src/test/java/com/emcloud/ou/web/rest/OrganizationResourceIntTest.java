@@ -1,38 +1,38 @@
 package com.emcloud.ou.web.rest;
 
-import com.emcloud.ou.EmCloudOuApp;
+    import com.emcloud.ou.EmCloudOuApp;
 
-import com.emcloud.ou.config.SecurityBeanOverrideConfiguration;
+    import com.emcloud.ou.config.SecurityBeanOverrideConfiguration;
 
-import com.emcloud.ou.domain.Organization;
-import com.emcloud.ou.repository.OrganizationRepository;
-import com.emcloud.ou.service.OrganizationService;
-import com.emcloud.ou.web.rest.errors.ExceptionTranslator;
+    import com.emcloud.ou.domain.Organization;
+    import com.emcloud.ou.repository.OrganizationRepository;
+    import com.emcloud.ou.service.OrganizationService;
+    import com.emcloud.ou.web.rest.errors.ExceptionTranslator;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.transaction.annotation.Transactional;
+    import org.junit.Before;
+    import org.junit.Test;
+    import org.junit.runner.RunWith;
+    import org.mockito.MockitoAnnotations;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.boot.test.context.SpringBootTest;
+    import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
+    import org.springframework.http.MediaType;
+    import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+    import org.springframework.test.context.junit4.SpringRunner;
+    import org.springframework.test.web.servlet.MockMvc;
+    import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+    import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
-import java.util.List;
+    import javax.persistence.EntityManager;
+    import java.time.Instant;
+    import java.time.temporal.ChronoUnit;
+    import java.util.List;
 
-import static com.emcloud.ou.web.rest.TestUtil.createFormattingConversionService;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasItem;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+    import static com.emcloud.ou.web.rest.TestUtil.createFormattingConversionService;
+    import static org.assertj.core.api.Assertions.assertThat;
+    import static org.hamcrest.Matchers.hasItem;
+    import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+    import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
  * Test class for the OrganizationResource REST controller.
@@ -52,7 +52,7 @@ public class OrganizationResourceIntTest {
     private static final String DEFAULT_ORG_TYPE = "AAAAAAAAAA";
     private static final String UPDATED_ORG_TYPE = "BBBBBBBBBB";
 
-    private static final String DEFAULT_COMPANY_CODE = "AAAAAAAAAA";
+    private static final String DEFAULT_COMPANY_CODE = "7a7a87ff-fd7c-11e7-9994-0242ac110005";
     private static final String UPDATED_COMPANY_CODE = "BBBBBBBBBB";
 
     private static final String DEFAULT_PARENT_CODE = "AAAAAAAAAA";
@@ -594,5 +594,13 @@ public class OrganizationResourceIntTest {
         assertThat(organization1).isNotEqualTo(organization2);
         organization1.setId(null);
         assertThat(organization1).isNotEqualTo(organization2);
+    }
+
+    @Test
+    @Transactional
+    public void findTree() throws  Exception{
+
+        System.out.println(organizationService.findtree(DEFAULT_COMPANY_CODE));
+
     }
 }
