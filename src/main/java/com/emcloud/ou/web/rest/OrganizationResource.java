@@ -41,6 +41,25 @@ public class OrganizationResource {
         this.organizationService = organizationService;
     }
 
+    @GetMapping("/all-organizations")
+    @Timed
+    public List<Organization> getAllOrganizations() {
+        return organizationService.findAll();
+    }
+
+    @GetMapping("/organizations/by-org-code/{orgCode}")
+    public List<Organization> getAllByOrgCode
+        (@RequestParam(value = "orgCode") String orgCode) {
+        return organizationService.findByOrgName(orgCode);
+    }
+
+    @GetMapping("/organizations/by-company-code/{companyCode}")
+    public List<Organization> getAllByCompanyCode
+        (@PathVariable String companyCode) {
+        return organizationService.findAllByCompanyCode(companyCode);
+    }
+
+
     /**
      * POST  /organizations : Create a new organization.
      *
@@ -102,7 +121,6 @@ public class OrganizationResource {
             Organization preNav = null;
             for (Organization nav : allMenu) {
                 curLevelNum = getLevelNum(nav);
-//                }
                 if (null != preNav) {
                     if (lastLevelNum == curLevelNum) { // 同一层次的
                         sb.append("}, \n");
@@ -116,13 +134,16 @@ public class OrganizationResource {
                         }
                     } else {
                         sb.append(",\"children\" :[ \n");
-                        // sb.append( "</li> \n" );
                     }
                 }
                 sb.append("{ \n");
                 sb.append("\"label\"").append(":\"").append(nav.getOrgName()).append("\",");
                 sb.append("\"id\"").append(":").append(nav.getId()).append(",");
                 sb.append("\"orgCode\"").append(":\"").append(nav.getOrgCode()).append("\"");
+//                //最子层一个不要下面两句
+//                sb.append("\"expandedIcon\"").append(":\"").append("fa-folder-open" + "\"");
+//                sb.append("\"collapsedIcon\"").append(":\"").append("fa-folder" + "\"");
+
 
                 lastLevelNum = curLevelNum;
                 preNav = nav;
@@ -138,7 +159,7 @@ public class OrganizationResource {
         sb.append("]");
         return sb;
     }
-//
+
     private static int getLevelNum(Organization org) {
         return org.getOrgCode().length() / 2;
     }

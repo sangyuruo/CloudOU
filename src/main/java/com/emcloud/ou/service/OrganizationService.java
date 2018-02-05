@@ -14,6 +14,12 @@ public interface OrganizationService {
 
     List<Organization> findAllByCompanyCode(String companyCode);
 
+    List<Organization> findAll();
+
+    List<Organization> findByOrgCode(String orgCode);
+
+
+
 
     List<Organization> findAllByCompanyName(String companyName);
 
@@ -33,7 +39,7 @@ public interface OrganizationService {
      */
     Organization save(Organization organization);
 
-  //  StringBuilder findtree(String code);
+    StringBuilder findtree(String code);
     /**
      * Update a organization.
      *
@@ -51,7 +57,7 @@ public interface OrganizationService {
     Page<Organization> findAll(Pageable pageable);
 
     /**
-     *  Get the "id" organization.
+     *  Get the "id" anization.
      *
      *  @param id the id of the entity
      *  @return the entity
