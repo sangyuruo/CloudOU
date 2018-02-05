@@ -117,12 +117,8 @@ public class OrganizationResource {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
         try {//查询所有菜单
-            List<Organization> allMenu = new ArrayList<>();
-            if(companyCode==null || companyCode.equals("")){
-                allMenu =organizationService. findAll();
-            }else {
-                allMenu = organizationService.findAllByCompanyCode(companyCode);
-            }
+            List<Organization> allMenu =organizationService. findAll();
+
             Collections.sort(allMenu, new Comparator<Organization>() {
                 @Override
                 public int compare(Organization o1, Organization o2) {
