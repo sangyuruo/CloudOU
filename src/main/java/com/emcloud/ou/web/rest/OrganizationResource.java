@@ -108,7 +108,7 @@ public class OrganizationResource {
             .body(result);
     }
 
-    @GetMapping("/organizations/tree/{companyCode}")
+    @GetMapping("/organizations/tree/")
     public StringBuilder findTree(@PathVariable String companyCode) {
 
         int lastLevelNum = 0; // 上一次的层次
