@@ -43,7 +43,7 @@ package com.emcloud.ou.web.rest;
 @SpringBootTest(classes = {EmCloudOuApp.class, SecurityBeanOverrideConfiguration.class})
 public class OrganizationResourceIntTest {
 
-    private static final String DEFAULT_ORG_CODE = "01";
+    private static final String DEFAULT_ORG_CODE = "03";
     private static final String UPDATED_ORG_CODE = "BBBBBBBBBB";
 
     private static final String DEFAULT_ORG_NAME = "AAAAAAAAAA";
@@ -55,7 +55,7 @@ public class OrganizationResourceIntTest {
     private static final String DEFAULT_COMPANY_CODE = "7a7a87ff-fd7c-11e7-9994-0242ac110005";
     private static final String UPDATED_COMPANY_CODE = "BBBBBBBBBB";
 
-    private static final String DEFAULT_PARENT_CODE = "AAAAAAAAAA";
+    private static final String DEFAULT_PARENT_CODE = "01";
     private static final String UPDATED_PARENT_CODE = "BBBBBBBBBB";
 
     private static final String DEFAULT_TELEPHONE = "AAAAAAAAAA";
@@ -606,7 +606,12 @@ public class OrganizationResourceIntTest {
 
     @Test
     @Transactional
+    public void testPOrg() throws  Exception{
+        System.out.println(organizationService.findByPOrgCode("0"));
+    }
+    @Test
+    @Transactional
     public void testOrg() throws  Exception{
-        System.out.println(organizationService.findByPOrgCode("01"));
+        System.out.println(organizationService.findByOrgCode(DEFAULT_ORG_CODE));
     }
 }

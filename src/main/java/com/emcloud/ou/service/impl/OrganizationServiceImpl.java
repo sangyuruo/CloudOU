@@ -34,8 +34,7 @@ public class OrganizationServiceImpl implements OrganizationService{
 
 
     @Override
-    public List<Organization> findAllByCompanyCode(String companyCode) {
-        return organizationRepository.findAllByCompanyCode(companyCode);
+    public List<Organization> findAllByCompanyCode(String companyCode) {return organizationRepository.findAllByCompanyCode(companyCode);
     }
 
     @Override
@@ -49,14 +48,11 @@ public class OrganizationServiceImpl implements OrganizationService{
     }
 
     @Override
-    public List<Organization> findByPOrgCode(String PorgCode) {
-
-        return organizationRepository.findAllByParentCode(PorgCode);
+    public List<Organization> findByPOrgCode(String PorgCode) {return organizationRepository.findAllByParentCode(PorgCode);
     }
 
     @Override
-    public List<Organization> findAllByCompanyName(String companyName) {
-        return organizationRepository.findAllByCompanyName(companyName);
+    public List<Organization> findAllByCompanyName(String companyName) {return organizationRepository.findAllByCompanyName(companyName);
     }
 
     /**
