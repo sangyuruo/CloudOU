@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.time.Instant;
 import java.util.*;
@@ -22,7 +23,7 @@ import java.util.regex.Pattern;
  */
 @Service
 @Transactional
-public class OrganizationServiceImpl implements OrganizationService{
+public class OrganizationServiceImpl implements OrganizationService {
 
     private final Logger log = LoggerFactory.getLogger(OrganizationServiceImpl.class);
 
@@ -34,7 +35,8 @@ public class OrganizationServiceImpl implements OrganizationService{
 
 
     @Override
-    public List<Organization> findAllByCompanyCode(String companyCode) {return organizationRepository.findAllByCompanyCode(companyCode);
+    public List<Organization> findAllByCompanyCode(String companyCode) {
+        return organizationRepository.findAllByCompanyCode(companyCode);
     }
 
     @Override
@@ -48,11 +50,13 @@ public class OrganizationServiceImpl implements OrganizationService{
     }
 
     @Override
-    public List<Organization> findByPOrgCode(String PorgCode) {return organizationRepository.findAllByParentCode(PorgCode);
+    public List<Organization> findByPOrgCode(String PorgCode) {
+        return organizationRepository.findAllByParentCode(PorgCode);
     }
 
     @Override
-    public List<Organization> findAllByCompanyName(String companyName) {return organizationRepository.findAllByCompanyName(companyName);
+    public List<Organization> findAllByCompanyName(String companyName) {
+        return organizationRepository.findAllByCompanyName(companyName);
     }
 
     /**
@@ -65,95 +69,90 @@ public class OrganizationServiceImpl implements OrganizationService{
     public Organization save(Organization organization) {
         log.debug("Request to save Organization : {}", organization);
 
-     //   organization.setCompanyCode(UUID.randomUUID().toString());
+        //   organization.setCompanyCode(UUID.randomUUID().toString());
 
         organization.setCreatedBy(SecurityUtils.getCurrentUserLogin());
         organization.setCreateTime(Instant.now());
         organization.setUpdatedBy(SecurityUtils.getCurrentUserLogin());
         organization.setUpdateTime(Instant.now());
-        if (checked(organization.getParentCode(),organization.getOrgCode())){
+        if (checked(organization.getParentCode(), organization.getOrgCode())) {
             organization.setOrgCode(organization.getOrgCode());
             return organizationRepository.save(organization);
-        }else {
+        } else {
             return null;
         }
 
 
     }
+
     private static int getLevelNum(Organization org) {
         return org.getOrgCode().length() / 2;
     }
+
     @Override
     public StringBuilder findtree(String companyCode) {
-        int lastLevelNum = 0; // 上一次的层次
-        int curLevelNum = 0; // 本次对象的层次
-        // Map<String, Object> data = new HashMap<String, Object>();
-        StringBuilder sb = new StringBuilder();
-        sb.append("[");
-        List<Organization> allMenu=new ArrayList<>();
-        try {//查询所有菜单
-            if(companyCode==null || companyCode.equals("")){
-                allMenu = findAll();
-            }else {
-                allMenu = findAllByCompanyCode(companyCode);
-            }
 
-            Collections.sort(allMenu, new Comparator<Organization>() {
-                @Override
-                public int compare(Organization o1, Organization o2) {
-                    return o1.getOrgCode().compareTo(o2.getOrgCode());
-                }
-            });
-            Organization preNav = null;
-            for (Organization nav : allMenu) {
-                curLevelNum = getLevelNum(nav);
-                if (null != preNav) {
-                    if (lastLevelNum == curLevelNum) { // 同一层次的
-                        sb.append("}, \n");
-                    } else if (lastLevelNum > curLevelNum) { // 这次的层次比上次高一层，也即跳到上一层
-                        sb.append("} \n");
-                        for (int j = curLevelNum; j < lastLevelNum; j++) {
-                            sb.append("]} \n");
-                            if (j == lastLevelNum - 1) {
-                                sb.append(", \n");
-                            }
-                        }
-                    } else {
-                        sb.append(",\"children\" :[ \n");
-                    }
-                }
-                sb.append("{ \n");
-                sb.append("\"label\"").append(":\"").append(nav.getOrgName()).append("\",");
-                sb.append("\"id\"").append(":").append(nav.getId()).append(",");
-                sb.append("\"orgCode\"").append(":\"").append(nav.getOrgCode()).append("\"");
-                sb.append("\"parentCode\"").append(":\"").append(nav.getParentCode()).append("\"");
-//                //最子层一个不要下面两句
-//                sb.append("\"expandedIcon\"").append(":\"").append("fa-folder-open" + "\"");
-//                sb.append("\"collapsedIcon\"").append(":\"").append("fa-folder" + "\"");
-
-
-                lastLevelNum = curLevelNum;
-                preNav = nav;
-            }
-            sb.append("} \n");
-            for (int j = 1; j < curLevelNum; j++) {
-                sb.append("]} \n");
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        sb.append("]");
-        return sb;
+//        int lastLevelNum = 0; // 上一次的层次
+//        int curLevelNum = 0; // 本次对象的层次
+//        // Map<String, Object> data = new HashMap<String, Object>();
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("[");
+//        try {//查询所有菜单
+//            List<Organization> allMenu = findAll();
+//
+//            Collections.sort(allMenu, new Comparator<Organization>() {
+//                @Override
+//                public int compare(Organization o1, Organization o2) {
+//                    return o1.getOrgCode().compareTo(o2.getOrgCode());
+//                }
+//            });
+//            Organization preNav = null;
+//            for (Organization nav : allMenu) {
+//                curLevelNum = getLevelNum(nav);
+//                if (null != preNav) {
+//                    if (lastLevelNum == curLevelNum) { // 同一层次的
+//                        sb.append("}, \n");
+//                    } else if (lastLevelNum > curLevelNum) { // 这次的层次比上次高一层，也即跳到上一层
+//                        sb.append("} \n");
+//                        for (int j = curLevelNum; j < lastLevelNum; j++) {
+//                            sb.append("]} \n");
+//                            if (j == lastLevelNum - 1) {
+//                                sb.append(", \n");
+//                            }
+//                        }
+//                    } else {
+//                        sb.append(",\"expandedIcon\"").append(":\"").append("fa-folder-open" + "\",");
+//                        sb.append("\"collapsedIcon\"").append(":\"").append("fa-folder" + "\"");
+//                        sb.append(",\"children\" :[ \n");
+//                    }
+//                }
+//                sb.append("{ \n");
+//                sb.append("\"label\"").append(":\"").append(nav.getOrgName()).append("\",");
+//                sb.append("\"id\"").append(":").append(nav.getId()).append(",");
+//                sb.append("\"orgCode\"").append(":\"").append(nav.getOrgCode()).append("\",");
+//                sb.append("\"parentCode\"").append(":\"").append(nav.getParentCode()).append("\"");
+//                lastLevelNum = curLevelNum;
+//                preNav = nav;
+//            }
+//            sb.append("} \n");
+//            for (int j = 1; j < curLevelNum; j++) {
+//                sb.append("]} \n");
+//            }
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        sb.append("]");
+//        return sb;
+        return null;
     }
 
 
-
-
-    public static boolean checked(String fzz,String zz){
-        boolean bool = Pattern.matches("^"+fzz+".*", zz);
+    public static boolean checked(String fzz, String zz) {
+        boolean bool = Pattern.matches("^" + fzz + ".*", zz);
         return bool;
     }
+
     /**
      * Update a organization.
      *
@@ -169,10 +168,10 @@ public class OrganizationServiceImpl implements OrganizationService{
     }
 
     /**
-     *  Get all the organizations.
+     * Get all the organizations.
      *
-     *  @param pageable the pagination information
-     *  @return the list of entities
+     * @param pageable the pagination information
+     * @return the list of entities
      */
     @Override
     @Transactional(readOnly = true)
@@ -182,10 +181,10 @@ public class OrganizationServiceImpl implements OrganizationService{
     }
 
     /**
-     *  Get all the organizations.
+     * Get all the organizations.
      *
-     *  @param orgName the pagination information
-     *  @return the list of entities
+     * @param orgName the pagination information
+     * @return the list of entities
      */
     @Override
     @Transactional(readOnly = true)
@@ -193,11 +192,12 @@ public class OrganizationServiceImpl implements OrganizationService{
         log.debug("Request to get all Organization by orgName");
         return organizationRepository.findByOrgName(orgName);
     }
+
     /**
-     *  Get one organization by id.
+     * Get one organization by id.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
     @Override
     @Transactional(readOnly = true)
@@ -207,9 +207,9 @@ public class OrganizationServiceImpl implements OrganizationService{
     }
 
     /**
-     *  Delete the  organization by id.
+     * Delete the  organization by id.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     @Override
     public void delete(Long id) {

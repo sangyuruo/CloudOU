@@ -132,9 +132,10 @@ public class OrganizationResource {
             .body(result);
     }
 
+
+//树形
     @GetMapping("/organizations/tree")
     public StringBuilder findTree() {
-
         int lastLevelNum = 0; // 上一次的层次
         int curLevelNum = 0; // 本次对象的层次
         // Map<String, Object> data = new HashMap<String, Object>();
@@ -164,6 +165,8 @@ public class OrganizationResource {
                             }
                         }
                     } else {
+                        sb.append(",\"expandedIcon\"").append(":\"").append("fa-folder-open" + "\",");
+                        sb.append("\"collapsedIcon\"").append(":\"").append("fa-folder" + "\"");
                         sb.append(",\"children\" :[ \n");
                     }
                 }
@@ -172,11 +175,6 @@ public class OrganizationResource {
                 sb.append("\"id\"").append(":").append(nav.getId()).append(",");
                 sb.append("\"orgCode\"").append(":\"").append(nav.getOrgCode()).append("\",");
                 sb.append("\"parentCode\"").append(":\"").append(nav.getParentCode()).append("\"");
-//                //最子层一个不要下面两句
-//                sb.append("\"expandedIcon\"").append(":\"").append("fa-folder-open" + "\"");
-//                sb.append("\"collapsedIcon\"").append(":\"").append("fa-folder" + "\"");
-
-
                 lastLevelNum = curLevelNum;
                 preNav = nav;
             }
