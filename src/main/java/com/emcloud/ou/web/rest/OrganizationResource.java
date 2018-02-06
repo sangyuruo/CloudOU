@@ -43,26 +43,50 @@ public class OrganizationResource {
 
     @GetMapping("/all-organizations")
     @Timed
-    public List<Organization> getAllOrganizations() {
-        return organizationService.findAll();
+    public ResponseEntity<List<Organization>> getAllOrganizations() {
+        List<Organization> list = organizationService.findAll();
+
+        if (list != null) {
+            return new ResponseEntity<>(list, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/organizations/by-org-code/{orgCode}")
-    public List<Organization> getAllByOrgCode
+    public ResponseEntity<List<Organization>> getAllByOrgCode
         (@PathVariable(value = "orgCode") String orgCode) {
-        return organizationService.findByOrgCode(orgCode);
+
+        List<Organization> list = organizationService.findByOrgCode(orgCode);
+        if (list != null) {
+            return new ResponseEntity<>(list, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/organizations/by-company-code/{companyCode}")
-    public List<Organization> getAllByCompanyCode
+    public ResponseEntity<List<Organization>> getAllByCompanyCode
         (@PathVariable String companyCode) {
-        return organizationService.findAllByCompanyCode(companyCode);
+
+        List<Organization> list = organizationService.findAllByCompanyCode(companyCode);
+        if (list != null) {
+            return new ResponseEntity<>(list, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/organizations/by-parent-org-code")
-    public List<Organization> getAllByParentOrgCode
+    public ResponseEntity<List<Organization>> getAllByParentOrgCode
         (@RequestParam(value = "parentOrgCode") String parentOrgCode) {
-        return organizationService.findByPOrgCode(parentOrgCode);
+
+        List<Organization> list = organizationService.findByPOrgCode(parentOrgCode);
+        if (list != null) {
+            return new ResponseEntity<>(list, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
 
@@ -117,7 +141,7 @@ public class OrganizationResource {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
         try {//查询所有菜单
-            List<Organization> allMenu =organizationService. findAll();
+            List<Organization> allMenu = organizationService.findAll();
 
             Collections.sort(allMenu, new Comparator<Organization>() {
                 @Override
@@ -179,20 +203,28 @@ public class OrganizationResource {
      * @return the ResponseEntity with status 200 (OK) and the list of organizations in body
      */
     @GetMapping("/organizations/by-org-name")
-    public List<Organization> getAllByOrgName
+    public ResponseEntity<List<Organization>> getAllByOrgName
     (@RequestParam(value = "orgName") String orgName) {
         log.debug("REST orgName to get a page of Organization");
         List<Organization> list = organizationService.findByOrgName(orgName);
-        return list;
+        if (list != null) {
+            return new ResponseEntity<>(list, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/organizations/by-company-name/{companyName}")
-    public List<Organization> getAllByCompanyName
+    public ResponseEntity<List<Organization>> getAllByCompanyName
         (@PathVariable String companyName) {
         log.debug("REST companyName to get a page of Organization");
 
         List<Organization> list = organizationService.findAllByCompanyName(companyName);
-        return list;
+        if (list != null) {
+            return new ResponseEntity<>(list, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     /**
