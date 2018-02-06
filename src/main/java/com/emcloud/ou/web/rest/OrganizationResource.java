@@ -49,7 +49,7 @@ public class OrganizationResource {
 
     @GetMapping("/organizations/by-org-code/{orgCode}")
     public List<Organization> getAllByOrgCode
-        (@RequestParam(value = "orgCode") String orgCode) {
+        (@PathVariable(value = "orgCode") String orgCode) {
         return organizationService.findByOrgName(orgCode);
     }
 
