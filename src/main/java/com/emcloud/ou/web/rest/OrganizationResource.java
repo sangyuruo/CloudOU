@@ -41,6 +41,17 @@ public class OrganizationResource {
         this.organizationService = organizationService;
     }
 
+    @GetMapping("/roots-organizations")
+    @Timed
+    public ResponseEntity<List<Organization>> getRoots() {
+        List<Organization> list = organizationService.findByPOrgCode("0");
+
+        if (list != null) {
+            return new ResponseEntity<>(list, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
     @GetMapping("/all-organizations")
     @Timed
     public ResponseEntity<List<Organization>> getAllOrganizations() {
@@ -133,7 +144,7 @@ public class OrganizationResource {
     }
 
 
-//树形
+    //树形
     @GetMapping("/organizations/tree")
     public StringBuilder findTree() {
         int lastLevelNum = 0; // 上一次的层次
@@ -142,7 +153,7 @@ public class OrganizationResource {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
         try {//查询所有菜单
-            List<Organization> allMenu = organizationService.findAll();
+            List<Organization> allMenu = organizationService.findByPOrgCode("0");
 
             Collections.sort(allMenu, new Comparator<Organization>() {
                 @Override
@@ -193,7 +204,6 @@ public class OrganizationResource {
     private static int getLevelNum(Organization org) {
         return org.getOrgCode().length() / 2;
     }
-
     /**
      * GET  /organizations : get all the organizations.
      *
