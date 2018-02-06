@@ -147,6 +147,7 @@ public class OrganizationResource {
                 sb.append("\"label\"").append(":\"").append(nav.getOrgName()).append("\",");
                 sb.append("\"id\"").append(":").append(nav.getId()).append(",");
                 sb.append("\"orgCode\"").append(":\"").append(nav.getOrgCode()).append("\"");
+                sb.append("\"parentCode\"").append(":\"").append(nav.getParentCode()).append("\"");
 //                //最子层一个不要下面两句
 //                sb.append("\"expandedIcon\"").append(":\"").append("fa-folder-open" + "\"");
 //                sb.append("\"collapsedIcon\"").append(":\"").append("fa-folder" + "\"");
