@@ -153,7 +153,7 @@ public class OrganizationResource {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
         try {//查询所有菜单
-            List<Organization> allMenu = organizationService.findByPOrgCode("0");
+            List<Organization> allMenu = organizationService.findAll();
 
             Collections.sort(allMenu, new Comparator<Organization>() {
                 @Override
