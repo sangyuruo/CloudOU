@@ -83,6 +83,7 @@ public class OrganizationResource {
                     sb.append(",\"expandedIcon\"").append(":\"").append("fa-folder-open" + "\",");
                     sb.append("\"collapsedIcon\"").append(":\"").append("fa-folder" + "\"");
                     sb.append(",\"children\" :[ \n");
+                    sb.append("]} \n");
                 }
 
                 lastLevelNum = curLevelNum;
