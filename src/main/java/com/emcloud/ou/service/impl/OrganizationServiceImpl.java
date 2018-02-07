@@ -135,7 +135,7 @@ public class OrganizationServiceImpl implements OrganizationService {
             }
             sb.append("} \n");
             for (int j = 1; j < curLevelNum; j++) {
-                sb.append("]} \n");
+                sb.append("} \n");
             }
 
         } catch (Exception e) {
