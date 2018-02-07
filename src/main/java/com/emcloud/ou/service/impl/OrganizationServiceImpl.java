@@ -125,8 +125,8 @@ public class OrganizationServiceImpl implements OrganizationService {
                 sb.append("\"parentCode\"").append(":\"").append(nav.getParentCode()).append("\"");
                 List<Organization> nav2roots = findByPOrgCode(nav.getOrgCode());
                 if (nav2roots.size() != 0) {
-                    sb.append(",\"leaf\"").append(":\").append(false + \",");
-                    sb.append("\"expandedIcon\"").append(":\"").append("fa-folder-open" + "\",");
+                    sb.append(",\"leaf\"").append(":").append(false);
+                    sb.append(",\"expandedIcon\"").append(":\"").append("fa-folder-open" + "\",");
                     sb.append("\"collapsedIcon\"").append(":\"").append("fa-folder" + "\"");
                     sb.append(",\"children\" :[ \n");
                     sb.append("] \n");
