@@ -134,9 +134,7 @@ public class OrganizationServiceImpl implements OrganizationService {
                 preNav = nav;
             }
             sb.append("} \n");
-            for (int j = 1; j < curLevelNum; j++) {
-                sb.append("} \n");
-            }
+
 
         } catch (Exception e) {
             e.printStackTrace();
