@@ -139,7 +139,7 @@ public class OrganizationResource {
     @GetMapping("/organizations/by-parent-org-code")
     public ResponseEntity<List<Organization>> getAllByParentOrgCode
         (@RequestParam(value = "parentOrgCode") String parentOrgCode) {
-        List<Organization> list = organizationService.findAllByCompanyCode(parentOrgCode);
+        List<Organization> list = organizationService.findByPOrgCode(parentOrgCode);
         if (list != null) {
             return new ResponseEntity<>(list, HttpStatus.OK);
         } else {
