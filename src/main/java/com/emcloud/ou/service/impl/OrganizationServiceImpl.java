@@ -90,10 +90,11 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
     @Override
     public StringBuilder findtree(String companyCode) {
+
         int lastLevelNum = 0; // 上一次的层次
         int curLevelNum = 0; // 本次对象的层次
 
-        List<Organization> roots = findByPOrgCode("01");
+        List<Organization> roots = findByPOrgCode(companyCode);
         // Map<String, Object> data = new HashMap<String, Object>();
         StringBuilder sb = new StringBuilder();
         sb.append("[");
@@ -122,7 +123,7 @@ public class OrganizationServiceImpl implements OrganizationService {
                 sb.append("\"id\"").append(":").append(nav.getId()).append(",");
                 sb.append("\"orgCode\"").append(":\"").append(nav.getOrgCode()).append("\",");
                 sb.append("\"parentCode\"").append(":\"").append(nav.getParentCode()).append("\"");
-                List<Organization> nav2roots = findByPOrgCode(nav.getOrgCode());
+                List<Organization> nav2roots =findByPOrgCode(nav.getOrgCode());
                 if (nav2roots.size() != 0) {
                     sb.append(",\"leaf\"").append(":").append(false);
                     sb.append(",\"expandedIcon\"").append(":\"").append("fa-folder-open" + "\",");
