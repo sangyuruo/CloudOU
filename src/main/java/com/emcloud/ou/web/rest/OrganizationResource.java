@@ -86,7 +86,6 @@ public class OrganizationResource {
                     sb.append(",\"children\" :[ \n");
                     sb.append("] \n");
                 }
-
                 lastLevelNum = curLevelNum;
                 preNav = nav;
             }
