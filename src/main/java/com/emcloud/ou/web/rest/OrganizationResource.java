@@ -81,7 +81,7 @@ public class OrganizationResource {
                 List<Organization> nav2roots = organizationService.findByPOrgCode(nav.getOrgCode());
                 if (nav2roots.size() != 0) {
                     sb.append(",\"leaf\"").append(":").append(false);
-                    sb.append("\"expandedIcon\"").append(":\"").append("fa-folder-open" + "\",");
+                    sb.append(",\"expandedIcon\"").append(":\"").append("fa-folder-open" + "\",");
                     sb.append("\"collapsedIcon\"").append(":\"").append("fa-folder" + "\"");
                     sb.append(",\"children\" :[ \n");
                     sb.append("] \n");
