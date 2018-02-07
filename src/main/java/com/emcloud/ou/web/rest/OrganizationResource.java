@@ -77,10 +77,10 @@ public class OrganizationResource {
                 sb.append("\"label\"").append(":\"").append(nav.getOrgName()).append("\",");
                 sb.append("\"id\"").append(":").append(nav.getId()).append(",");
                 sb.append("\"orgCode\"").append(":\"").append(nav.getOrgCode()).append("\",");
-                sb.append("\"parentCode\"").append(":\"").append(nav.getParentCode()).append("\",");
+                sb.append("\"parentCode\"").append(":\"").append(nav.getParentCode()).append("\"");
                 List<Organization> nav2roots = organizationService.findByPOrgCode(nav.getOrgCode());
                 if (nav2roots.size() != 0) {
-                    sb.append("\"leaf\"").append(":\"").append("false" + "\",");
+                    sb.append(",\"leaf\"").append(":\"").append("false" + "\",");
                     sb.append("\"expandedIcon\"").append(":\"").append("fa-folder-open" + "\",");
                     sb.append("\"collapsedIcon\"").append(":\"").append("fa-folder" + "\"");
                     sb.append(",\"children\" :[ \n");
