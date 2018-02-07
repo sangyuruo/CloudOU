@@ -88,13 +88,12 @@ public class OrganizationServiceImpl implements OrganizationService {
     private static int getLevelNum(Organization org) {
         return org.getOrgCode().length() / 2;
     }
-
     @Override
     public StringBuilder findtree(String companyCode) {
         int lastLevelNum = 0; // 上一次的层次
         int curLevelNum = 0; // 本次对象的层次
 
-        List<Organization> roots = findByPOrgCode("0");
+        List<Organization> roots = findByPOrgCode("01");
         // Map<String, Object> data = new HashMap<String, Object>();
         StringBuilder sb = new StringBuilder();
         sb.append("[");
@@ -131,7 +130,6 @@ public class OrganizationServiceImpl implements OrganizationService {
                     sb.append(",\"children\" :[ \n");
                     sb.append("] \n");
                 }
-
                 lastLevelNum = curLevelNum;
                 preNav = nav;
             }
@@ -215,5 +213,61 @@ public class OrganizationServiceImpl implements OrganizationService {
     public void delete(Long id) {
         log.debug("Request to delete Organization : {}", id);
         organizationRepository.delete(id);
+    }
+
+    public StringBuilder a(){
+        int lastLevelNum = 0; // 上一次的层次
+        int curLevelNum = 0; // 本次对象的层次
+
+        List<Organization> roots = findByPOrgCode("01");
+        // Map<String, Object> data = new HashMap<String, Object>();
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        try {//查询所有菜单
+
+            Organization preNav = null;
+            for (Organization nav : roots) {
+                curLevelNum = getLevelNum(nav);
+                if (null != preNav) {
+                    if (lastLevelNum == curLevelNum) { // 同一层次的
+                        sb.append("}, \n");
+                    } else if (lastLevelNum > curLevelNum) { // 这次的层次比上次高一层，也即跳到上一层
+                        sb.append("} \n");
+
+                        for (int j = curLevelNum; j < lastLevelNum; j++) {
+                            sb.append("]} \n");
+                            if (j == lastLevelNum - 1) {
+                                sb.append(", \n");
+                            }
+
+                        }
+                    }
+                }
+                sb.append("{ \n");
+                sb.append("\"label\"").append(":\"").append(nav.getOrgName()).append("\",");
+                sb.append("\"id\"").append(":").append(nav.getId()).append(",");
+                sb.append("\"orgCode\"").append(":\"").append(nav.getOrgCode()).append("\",");
+                sb.append("\"parentCode\"").append(":\"").append(nav.getParentCode()).append("\"");
+                List<Organization> nav2roots = findByPOrgCode(nav.getOrgCode());
+                if (nav2roots.size() != 0) {
+                    sb.append(",\"leaf\"").append(":").append(false);
+                    sb.append(",\"expandedIcon\"").append(":\"").append("fa-folder-open" + "\",");
+                    sb.append("\"collapsedIcon\"").append(":\"").append("fa-folder" + "\"");
+                    sb.append(",\"children\" :[ \n");
+                    sb.append("] \n");
+                }
+                lastLevelNum = curLevelNum;
+                preNav = nav;
+            }
+            sb.append("} \n");
+            for (int j = 1; j < curLevelNum; j++) {
+                sb.append("]} \n");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        sb.append("]");
+        return sb;
     }
 }
