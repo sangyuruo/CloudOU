@@ -9,9 +9,9 @@ entity Employee {
  /** 员工姓名 */
  ename		String maxlength(40)  required,
  /** 组织代码 */
- orgCode		String maxlength(46)  required,
+ orgCode		String maxlength(64)  required,
  /** 公司代码 */
- companyCode	String maxlength(46)  required,
+ companyCode	String maxlength(64)  required,
  /** 职位 */
  position		String maxlength(100)  required,
  /** 性别 */

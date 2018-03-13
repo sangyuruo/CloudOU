@@ -49,18 +49,18 @@ public class Employee implements Serializable {
      * 组织代码
      */
     @NotNull
-    @Size(max = 46)
+    @Size(max = 64)
     @ApiModelProperty(value = "组织代码", required = true)
-    @Column(name = "org_code", length = 46, nullable = false)
+    @Column(name = "org_code", length = 64, nullable = false)
     private String orgCode;
 
     /**
      * 公司代码
      */
     @NotNull
-    @Size(max = 46)
+    @Size(max = 64)
     @ApiModelProperty(value = "公司代码", required = true)
-    @Column(name = "company_code", length = 46, nullable = false)
+    @Column(name = "company_code", length = 64, nullable = false)
     private String companyCode;
 
     /**

@@ -30,11 +30,11 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="org_code" type="varchar(46)">
+            <column name="org_code" type="varchar(64)">
                 <constraints nullable="false" />
             </column>
 
-            <column name="company_code" type="varchar(46)">
+            <column name="company_code" type="varchar(64)">
                 <constraints nullable="false" />
             </column>
 

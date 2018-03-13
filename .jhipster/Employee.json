@@ -30,7 +30,7 @@
                 "maxlength",
                 "required"
             ],
-            "fieldValidateRulesMaxlength": 46
+            "fieldValidateRulesMaxlength": 64
         },
         {
             "fieldName": "companyCode",
@@ -40,7 +40,7 @@
                 "maxlength",
                 "required"
             ],
-            "fieldValidateRulesMaxlength": 46
+            "fieldValidateRulesMaxlength": 64
         },
         {
             "fieldName": "position",
