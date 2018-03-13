@@ -2,14 +2,12 @@ package com.emcloud.ou.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.emcloud.ou.domain.Organization;
-import com.emcloud.ou.repository.OrganizationRepository;
 import com.emcloud.ou.service.OrganizationService;
 import com.emcloud.ou.web.rest.errors.BadRequestAlertException;
 import com.emcloud.ou.web.rest.util.HeaderUtil;
 import com.emcloud.ou.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
-import org.aspectj.weaver.ast.Or;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -54,7 +52,6 @@ public class OrganizationResource {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
         try {//查询所有菜单
-
             Organization preNav = null;
             for (Organization nav : roots) {
                 curLevelNum = getLevelNum(nav);

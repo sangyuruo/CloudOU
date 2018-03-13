@@ -1,0 +1,48 @@
+
+ /**
+ * 员工表
+ * @author daiziying
+ */
+entity Employee {
+ /** 员工编号 */
+ ecode	String maxlength(40)  required,
+ /** 员工姓名 */
+ ename		String maxlength(40)  required,
+ /** 组织代码 */
+ orgCode		String maxlength(46)  required,
+ /** 公司代码 */
+ companyCode	String maxlength(46)  required,
+ /** 职位 */
+ position		String maxlength(100)  required,
+ /** 性别 */
+ sex			String maxlength(2)  required,
+ /** 出生日期 */
+ birthDate	Instant
+ /** 身份证号 */
+ idCode		String maxlength(20)
+ /** 社保账号 */
+ insurcode	String maxlength(40)  required,
+ /** 家庭地址 */
+ homeAddress	String maxlength(200)
+ /** 手机号码 */
+ mobile		String maxlength(20)  required,
+ /** 邮箱 */
+ email		String maxlength(100)  required,
+ /** 入职日期 */
+ joinDate		Instant required,
+ /** 是否有效 */
+ enabled	Boolean required,
+ /** 附件数 */
+ attachsNum	 Integer
+
+ }
+
+
+ /**
+ * 用户员工关系表
+ * @author daiziying
+ */
+ entity User_Emp{
+	ecode String maxlength(40)  required,
+	login String maxlength(50)  required,
+ }
