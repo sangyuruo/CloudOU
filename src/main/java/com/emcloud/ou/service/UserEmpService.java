@@ -1,44 +1,44 @@
 package com.emcloud.ou.service;
 
-import com.emcloud.ou.domain.Employee;
+import com.emcloud.ou.domain.UserEmp;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 /**
- * Service Interface for managing Employee.
+ * Service Interface for managing UserEmp.
  */
-public interface EmployeeService {
+public interface UserEmpService {
 
     /**
-     * Save a employee.
+     * Save a userEmp.
      *
-     * @param employee the entity to save
+     * @param userEmp the entity to save
      * @return the persisted entity
      */
-    Employee save(Employee employee);
+    UserEmp save(UserEmp userEmp);
 
     /**
-     *  Get all the employees.
+     *  Get all the userEmps.
      *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<Employee> findAll(Pageable pageable);
+    Page<UserEmp> findAll(Pageable pageable);
 
     /**
-     *  Get the "id" employee.
+     *  Get the "id" userEmp.
      *
      *  @param id the id of the entity
      *  @return the entity
      */
-    Employee findOne(Long id);
+    UserEmp findOne(Long id);
 
     /**
-     *  Delete the "id" employee.
+     *  Delete the "id" userEmp.
      *
      *  @param id the id of the entity
      */
     void delete(Long id);
 
-    Employee findOneByEcode(String ecode);
+    UserEmp findOneByLogin(String login);
 }
