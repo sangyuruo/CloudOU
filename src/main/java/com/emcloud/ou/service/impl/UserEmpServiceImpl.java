@@ -74,4 +74,9 @@ public class UserEmpServiceImpl implements UserEmpService{
         log.debug("Request to delete UserEmp : {}", id);
         userEmpRepository.delete(id);
     }
+
+    @Override
+    public UserEmp findOneByLogin(String login) {
+        return userEmpRepository.findOneByLogin(login);
+    }
 }

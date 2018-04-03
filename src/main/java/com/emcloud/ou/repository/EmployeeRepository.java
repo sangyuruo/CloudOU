@@ -12,5 +12,5 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
-
+    Employee findOneByEcode(String ecode);
 }

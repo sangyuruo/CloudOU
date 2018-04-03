@@ -125,4 +125,19 @@ public class UserEmpResource {
         userEmpService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+
+    /**
+     * GET  /user-emps/:login : get the "login" userEmp.
+     *
+     * @param login the id of the userEmp to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the userEmp, or with status 404 (Not Found)
+     */
+    @GetMapping("/user-emps/{login}")
+    @Timed
+    public ResponseEntity<UserEmp> getUserEmpByLogin(@PathVariable String login) {
+        log.debug("REST request to get UserEmp : {}", login);
+        UserEmp userEmp = userEmpService.findOneByLogin(login);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(userEmp));
+    }
 }

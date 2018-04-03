@@ -74,4 +74,9 @@ public class EmployeeServiceImpl implements EmployeeService{
         log.debug("Request to delete Employee : {}", id);
         employeeRepository.delete(id);
     }
+
+    @Override
+    public Employee findOneByEcode(String ecode) {
+        return employeeRepository.findOneByEcode(ecode);
+    }
 }

@@ -125,4 +125,13 @@ public class EmployeeResource {
         employeeService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+
+    @GetMapping("/employees/{ecode}")
+    @Timed
+    public ResponseEntity<Employee> getEmployee(@PathVariable String ecode) {
+
+        Employee employee = employeeService.findOneByEcode(ecode);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(employee));
+    }
 }
