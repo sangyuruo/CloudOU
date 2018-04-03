@@ -133,11 +133,11 @@ public class UserEmpResource {
      * @param login the id of the userEmp to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the userEmp, or with status 404 (Not Found)
      */
-    @GetMapping("/user-emps/{login}")
+    @GetMapping("/user-emps/login/{login}")
     @Timed
-    public ResponseEntity<UserEmp> getUserEmpByLogin(@PathVariable String login) {
+    public UserEmp getUserEmpByLogin(@PathVariable String login) {
         log.debug("REST request to get UserEmp : {}", login);
-        UserEmp userEmp = userEmpService.findOneByLogin(login);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(userEmp));
+        return  userEmpService.findOneByLogin(login);
+
     }
 }

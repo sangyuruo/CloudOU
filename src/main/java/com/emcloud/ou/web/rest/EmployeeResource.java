@@ -127,7 +127,7 @@ public class EmployeeResource {
     }
 
 
-    @GetMapping("/employees/{ecode}")
+    @GetMapping("/employees/ecode/{ecode}")
     @Timed
     public ResponseEntity<Employee> getEmployee(@PathVariable String ecode) {
 
