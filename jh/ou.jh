@@ -52,6 +52,7 @@ entity Company {
  * @author daiziying
  */
 entity Organization {
+
     /** 组织代码 */
     orgCode  String maxlength(64) required,
     /** 组织名称 */
