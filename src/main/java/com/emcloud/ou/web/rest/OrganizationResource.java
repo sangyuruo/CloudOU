@@ -43,7 +43,7 @@ public class OrganizationResource {
     @GetMapping("/organizations/tree")
     @Timed
     public StringBuilder getRoots() {
-
+//可通过code排序
         int lastLevelNum = 0; // 上一次的层次
         int curLevelNum = 0; // 本次对象的层次
 
@@ -51,6 +51,8 @@ public class OrganizationResource {
         // Map<String, Object> data = new HashMap<String, Object>();
         StringBuilder sb = new StringBuilder();
         sb.append("[");
+
+
         try {//查询所有菜单
             Organization preNav = null;
             for (Organization nav : roots) {

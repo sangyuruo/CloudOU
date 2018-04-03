@@ -42,7 +42,7 @@ entity Employee {
  * 用户员工关系表
  * @author daiziying
  */
- entity User_Emp{
+ entity UserEmp{
 	ecode String maxlength(40)  required,
 	login String maxlength(50)  required,
  }
