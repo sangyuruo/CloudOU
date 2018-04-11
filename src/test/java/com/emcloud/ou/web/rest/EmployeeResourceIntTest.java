@@ -7,6 +7,7 @@ import com.emcloud.ou.config.SecurityBeanOverrideConfiguration;
 import com.emcloud.ou.domain.Employee;
 import com.emcloud.ou.repository.EmployeeRepository;
 import com.emcloud.ou.service.EmployeeService;
+import com.emcloud.ou.service.UserEmpService;
 import com.emcloud.ou.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -93,6 +94,8 @@ public class EmployeeResourceIntTest {
 
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
+    private UserEmpService userEmpService;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -113,7 +116,7 @@ public class EmployeeResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final EmployeeResource employeeResource = new EmployeeResource(employeeService);
+        final EmployeeResource employeeResource = new EmployeeResource(employeeService,userEmpService);
         this.restEmployeeMockMvc = MockMvcBuilders.standaloneSetup(employeeResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

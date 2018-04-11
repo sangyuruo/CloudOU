@@ -2,14 +2,18 @@ package com.emcloud.ou.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.emcloud.ou.domain.Employee;
+import com.emcloud.ou.domain.UserEmp;
 import com.emcloud.ou.service.EmployeeService;
+import com.emcloud.ou.service.UserEmpService;
 import com.emcloud.ou.web.rest.errors.BadRequestAlertException;
 import com.emcloud.ou.web.rest.util.HeaderUtil;
 import com.emcloud.ou.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
+import io.swagger.annotations.Authorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -36,9 +40,12 @@ public class EmployeeResource {
     private static final String ENTITY_NAME = "employee";
 
     private final EmployeeService employeeService;
+    private final UserEmpService userEmpService;
 
-    public EmployeeResource(EmployeeService employeeService) {
+    @Autowired
+    public EmployeeResource(EmployeeService employeeService, UserEmpService userEmpService) {
         this.employeeService = employeeService;
+        this.userEmpService = userEmpService;
     }
 
     /**
@@ -127,11 +134,10 @@ public class EmployeeResource {
     }
 
 
-    @GetMapping("/employees/ecode/{ecode}")
+    @GetMapping("/employees/login/{login}")
     @Timed
-    public ResponseEntity<Employee> getEmployee(@PathVariable String ecode) {
-
-        Employee employee = employeeService.findOneByEcode(ecode);
+    public ResponseEntity<Employee> getEmployee(@PathVariable(value = "login") String login) {
+        Employee employee =  employeeService.findByLogin(login);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(employee));
     }
 }

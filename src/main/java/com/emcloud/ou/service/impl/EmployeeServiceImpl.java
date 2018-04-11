@@ -1,10 +1,13 @@
 package com.emcloud.ou.service.impl;
 
+import com.emcloud.ou.domain.UserEmp;
 import com.emcloud.ou.service.EmployeeService;
 import com.emcloud.ou.domain.Employee;
 import com.emcloud.ou.repository.EmployeeRepository;
+import com.emcloud.ou.service.UserEmpService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -16,14 +19,17 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class EmployeeServiceImpl implements EmployeeService{
+public class EmployeeServiceImpl implements EmployeeService {
 
     private final Logger log = LoggerFactory.getLogger(EmployeeServiceImpl.class);
 
     private final EmployeeRepository employeeRepository;
+    private final UserEmpService userEmpService;
 
-    public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
+    @Autowired
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository, UserEmpService userEmpService) {
         this.employeeRepository = employeeRepository;
+        this.userEmpService = userEmpService;
     }
 
     /**
@@ -39,10 +45,10 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     /**
-     *  Get all the employees.
+     * Get all the employees.
      *
-     *  @param pageable the pagination information
-     *  @return the list of entities
+     * @param pageable the pagination information
+     * @return the list of entities
      */
     @Override
     @Transactional(readOnly = true)
@@ -52,10 +58,10 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     /**
-     *  Get one employee by id.
+     * Get one employee by id.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
     @Override
     @Transactional(readOnly = true)
@@ -65,9 +71,9 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     /**
-     *  Delete the  employee by id.
+     * Delete the  employee by id.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     @Override
     public void delete(Long id) {
@@ -78,5 +84,11 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     public Employee findOneByEcode(String ecode) {
         return employeeRepository.findOneByEcode(ecode);
+    }
+
+
+    public Employee findByLogin(String login){
+        UserEmp userEmp = userEmpService.findOneByLogin(login);
+        return findOneByEcode(userEmp.getEcode());
     }
 }
