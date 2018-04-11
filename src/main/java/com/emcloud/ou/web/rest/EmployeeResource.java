@@ -137,8 +137,7 @@ public class EmployeeResource {
     @GetMapping("/employees/login/{login}")
     @Timed
     public ResponseEntity<Employee> getEmployee(@PathVariable(value = "login") String login) {
-        UserEmp userEmp = userEmpService.findOneByLogin(login);
-        Employee employee = employeeService.findOneByEcode(userEmp.getEcode());
+        Employee employee =  employeeService.findByLogin(login);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(employee));
     }
 }

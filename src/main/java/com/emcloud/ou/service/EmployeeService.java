@@ -41,4 +41,5 @@ public interface EmployeeService {
     void delete(Long id);
 
     Employee findOneByEcode(String ecode);
+    Employee findByLogin(String login);
 }
