@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -37,6 +38,7 @@ public class UserEmpResource {
 
     private final UserEmpService userEmpService;
 
+    @Autowired
     public UserEmpResource(UserEmpService userEmpService) {
         this.userEmpService = userEmpService;
     }
@@ -126,18 +128,4 @@ public class UserEmpResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-
-    /**
-     * GET  /user-emps/:login : get the "login" userEmp.
-     *
-     * @param login the id of the userEmp to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the userEmp, or with status 404 (Not Found)
-     */
-    @GetMapping("/user-emps/login/{login}")
-    @Timed
-    public UserEmp getUserEmpByLogin(@PathVariable String login) {
-        log.debug("REST request to get UserEmp : {}", login);
-        return  userEmpService.findOneByLogin(login);
-
-    }
 }
